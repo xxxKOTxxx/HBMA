@@ -1,0 +1,38 @@
+:php session_start()  // Start session
+:php require_once('/../php/language.php') // Detect active language
+
+.page.reviews
+  .page-content
+    .page-heading
+      .page-title
+        h1(data-language="reviews-title") <? translate($languages['reviews']['title']); ?>
+
+    .slider.reviews-slider
+      <? $i = 0; ?>
+      <? foreach($languages['reviews']['slider'] as $slide) { ?>
+      .slide
+        .slide-content
+          .review-heading
+            .review-author(
+              data-language="reviews-slider"
+              data-array!="<? echo $i; ?>"
+              data-item='author'
+            ) <? translate($slide['author']); ?>
+            .review-rate(class!="rate-<? set($slide['rate']); ?>")
+              svg.star
+                use(xlink:href="#star")
+              svg.star
+                use(xlink:href="#star")
+              svg.star
+                use(xlink:href="#star")
+              svg.star
+                use(xlink:href="#star")
+              svg.star
+                use(xlink:href="#star")
+          .review-text(
+              data-language="reviews-slider"
+              data-array!="<? echo $i; ?>"
+              data-item='text'
+            ) <? translate($slide['text']); ?>
+      <? $i++; ?>
+      <? }; ?>

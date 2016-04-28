@@ -1,0 +1,53 @@
+:php session_start()  // Start session
+:php require_once('/../php/language.php') // Detect active language
+:php require_once('/../languages/'.$_SESSION['language'].'.php')  // Include active language
+
+.page.contacts
+  .page-content
+    .small-block.contacts-block
+      h2.block-title(data-language="contacts-title") <? echo $language['contacts-title']; ?>
+      p.block-text(data-language="contacts-text") <? echo $language['contacts-text']; ?>
+      .contact.phone
+        svg.icon
+          use(xlink:href="phone")
+        a.phone-link(
+          title!=""
+          href!=""
+          data-language="contacts-phone"
+        ) <? echo $language['contacts-phone']; ?>
+      .contact.email
+        svg.icon
+          use(xlink:href="email")
+        a.email-link(
+          title!=""
+          href!=""
+          data-language="contacts-email"
+        ) <? echo $language['contacts-email']; ?>
+      .contact.address
+        svg.icon
+          use(xlink:href="pin")
+        p.address(data-language="contacts-email") <? echo $language['contacts-address']; ?>
+      .map
+
+    .small-block.send-block
+      h2.block-title(data-language="contacts-send-title") <? echo $language['contacts-send-title']; ?>
+      p.block-text(data-language="contacts-send-text") <? echo $language['contacts-send-text']; ?>
+      form
+        input(
+          type="email"
+          name="email"
+          data-language="contacts-send-email"
+          placeholder!="<? echo $language['contacts-send-email']; ?>"
+        )
+        input(
+          type="text"
+          name="title"
+          data-language="contacts-send-title"
+          placeholder!="<? echo $language['contacts-send-title']; ?>"
+        )
+        textarea(
+          name="message"
+          data-language="contacts-send-message"
+          placeholder!="<? echo $language['contacts-send-message']; ?>"
+        )
+        button.send(data-language="contacts-send") <? echo $language['contacts-send']; ?>

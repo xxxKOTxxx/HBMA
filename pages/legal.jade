@@ -1,0 +1,75 @@
+:php session_start()  // Start session
+:php require_once('/../php/language.php') // Detect active language
+:php require_once('/../languages/'.$_SESSION['language'].'.php')  // Include active language
+
+.page.legal
+  .page-content
+    .page-heading
+      .page-title(data-language="legal-title")
+        h1 <? echo $language['legal-title']; ?>
+      .page-image-block
+        .page-image.legal
+    p.page-text(data-language="legal-text") <? echo $language['legal-text']; ?>
+    .page-delimiter
+    .services-block
+      h2.block-title(data-language="legal-services-title") <? echo $language['legal-services-title']; ?>
+      p.block-text(data-language="legal-services-text") <? echo $language['legal-services-text']; ?>
+      ul.block-list.services
+        <? $i = 0; ?>
+        <? foreach($language['legal-services'] as $service) { ?>
+        li.list-item.service
+          h3.list-item-text(
+              data-language="legal-services" 
+              data-array!="<? echo $i; ?>"
+            ) <? echo $service; ?>
+        |  
+        <? $i++; ?>
+        <? }; ?>
+    .prices-block
+      h2.block-title(data-language="legal-prices-title") <? echo $language['legal-prices-title']; ?>
+      p.block-text(data-language="legal-prices-text") <? echo $language['legal-prices-text']; ?>
+      .prices-wrap
+        <? $i = 0; ?>
+        <? foreach($language['legal-prices'] as $price) { ?>
+        |  
+        .small-block.price-block
+          h3.price-title(
+            data-language="legal-prices" 
+            data-array!="<? echo $i; ?>"
+            data-item="title"
+            ) <? echo $price['title']; ?>
+          table.prices
+            <? $ii = 0; ?>
+            <? foreach($price['data'] as $price_item) { ?>
+            tr(class!="<? if($price_item['class']) echo $price_item['class']; ?>")
+              td.name(
+                data-language="legal-prices" 
+                data-array!="<? echo $i; ?>"
+                data-subarray!="<? echo $ii; ?>"
+                data-item="title"
+              ) <? echo $price_item['title']; ?>
+              td.prefix(
+                data-language="legal-prices" 
+                data-array!="<? echo $i; ?>"
+                data-subarray!="<? echo $ii; ?>"
+                data-item="prefix"
+              ) <? echo $price_item['prefix']; ?>
+              td.price(
+                data-language="legal-prices" 
+                data-array!="<? echo $i; ?>"
+                data-subarray!="<? echo $ii; ?>"
+                data-item="value"
+              ) <? echo $price_item['price']; ?>
+              td.units(
+                data-language="legal-prices" 
+                data-array!="<? echo $i; ?>"
+                data-subarray!="<? echo $ii; ?>"
+                data-item="units"
+              ) <? echo $price_item['units']; ?>
+            <? $ii++; ?>
+            <? }; ?>
+        <? $i++; ?>
+        <? }; ?>
+        .small-block
+          p.call-text(data-language="legal-call-text") <? echo $language['legal-call-text']; ?>
+          button.call(data-language="legal-call") <? echo $language['legal-call']; ?>

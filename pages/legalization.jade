@@ -1,0 +1,59 @@
+:php session_start()  // Start session
+:php require_once('/../php/language.php') // Detect active language
+:php require_once('/../languages/'.$_SESSION['language'].'.php')  // Include active language
+
+.page.legalization
+  .page-content
+    .page-heading
+      .page-title(data-language="legalization-title")
+        h1 <? echo $language['legalization-title']; ?>
+      .page-image-block
+        .page-image.legalization
+    p.page-text(data-language="legalization-text") <? echo $language['legalization-text']; ?>
+    .page-delimiter
+    .services-block
+      h2.block-title(data-language="legalization-services-title") <? echo $language['legalization-services-title']; ?>
+      p.block-text(data-language="legalization-services-text") <? echo $language['legalization-services-text']; ?>
+      ul.block-list.services
+        <? $i = 0; ?>
+        <? foreach($language['legalization-services'] as $service) { ?>
+        li.list-item.service
+          h3.list-item-text(
+              data-language="legalization-services" 
+              data-array!="<? echo $i; ?>"
+            ) <? echo $service; ?>
+        |  
+        <? $i++; ?>
+        <? }; ?>
+    .calculator-block
+      h2.block-title(data-language="legalization-calculator-title") <? echo $language['legalization-calculator-title']; ?>
+      p.block-text(data-language="legalization-calculator-text") <? echo $language['legalization-calculator-text']; ?>
+      form.calculator.legalization-calculator
+        select.calculator-item.calculator-select.legalization-calculator-production(
+          data-affect="legalization-calculator-urgency"
+        )
+          <? $i = 0; ?>
+          <? foreach($language['legalization-calculator-production'] as $production) { ?>
+          option(
+            data-language="legalization-calculator-production" 
+            data-array!="<? echo $i; ?>"
+            value!='<?=htmlspecialchars(json_encode($production[data])); ?>'
+          ) <? echo $production['title']; ?>
+          <? $i++; ?>
+          <? }; ?>
+        select.calculator-item.calculator-select.legalization-calculator-urgency
+          <? foreach($language['legalization-calculator-production'][0]['data'] as $urgency) { ?>
+          option(
+            value=''
+            data-price!="<?=$urgency['price']; ?>"
+            data-prefix!="<?=$urgency['prefix']; ?>"
+            data-units!="<?=$urgency['units']; ?>"
+          ) <? echo $urgency['title']; ?>
+          <? }; ?>
+        .calculator-result-block
+          p.result-text(data-language="legalization-calculator-result") <? echo $language['legalization-calculator-result']; ?>:
+            span.result-prefix
+            span.result-value
+            span.result-units
+      button.call(data-language="legalization-call") <? echo $language['legalization-call']; ?>
+

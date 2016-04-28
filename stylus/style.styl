@@ -1,0 +1,598 @@
+@import "kouto-swiss"
+@import "variables.styl"
+meyer-reset()
+
+/*** Common ***/
+html,
+body
+  size 100%
+  min-height 100%
+  font-family "Open Sans"
+
+svg
+  size 0
+  display none
+
+input[type=number]
+    -moz-appearance textfield
+input[type=number]::-webkit-inner-spin-button 
+input[type=number]::-webkit-outer-spin-button 
+  -webkit-appearance none
+  margin 0
+
+::-webkit-input-placeholder
+  color input-background-hover-color
+  opacity 1
+::-moz-placeholder
+  color input-background-hover-color
+  opacity 1
+:-moz-placeholder
+  color input-background-hover-color
+  opacity 1
+:-ms-input-placeholder
+  color input-background-hover-color
+  opacity 1
+  
+.small-block
+  width 414px
+  display inline-block
+  vertical-align top
+
+.logo
+  size 18px
+  display inline-block
+  box-sizing border-box
+  border 1px solid #4f5d67
+  border-radius 50%
+  background-image url('images/world.png')
+  background-size auto 100%
+  background-position 0 50%
+  backgrount-repeat repeat-x
+  animation world-animation 2s linear infinite 
+@keyframes world-animation
+  0%
+    background-position 0 0
+  100%
+    background-position 220% 0
+    
+
+.call
+  size 240px 60px
+  color input-text-color
+  font-size 14px
+  text-transform uppercase
+  border 0 none
+  border-radius 0
+  background-color input-background-hover-color
+  letter-spacing 7px
+  cursor pointer
+  &:hover
+    background-image linear-gradient(180deg, button-gradient-start-color, button-gradient-end-color)
+    
+.calculator-result-block
+  opacity 0
+    
+/*** Sidebar ***/
+aside
+  size 220px 100%
+  fixed 0 false 0 0
+  min-height 455px
+  nav
+    size 100%
+    display table
+    background-color text-color
+    
+.top-menu
+.bottom-menu
+.language-menu
+  display table-row
+  width 100%
+.top-menu
+  height 100%
+  
+.menu-item
+  width 100%
+  padding 17px 0 17px 29px
+  box-sizing border-box
+  display block
+  margin 0
+  color menu-item-color
+  &.current
+    border-left 2px solid input-background-hover-color
+    background-color menu-item-hover-color
+  &.icon
+    relative false
+    padding 50px 0 48px 62px
+    margin-bottom 43px
+    .logo
+      absolute 54px false false 33px
+    .heading
+      color menu-item-heading-color
+      font-size 18px
+      font-weight 600
+    .subheading
+      display block
+      color menu-item-subheading-color
+      opacity 1
+      font-size 10px
+      font-weight 400
+      text-transform uppercase
+      
+  a
+    color inherit
+    text-decoration none
+    transition color 0.2s linear
+    &:hover
+      color input-text-color
+    
+  .heading
+    font-size 14px
+    text-transform uppercase
+  
+  .subheading
+    font-size 12px
+    text-transform none
+    display block
+    opacity 0.2
+.languages
+  width 100%
+  display table
+  table-layout fixed
+  border-top 1px solid menu-border-color
+  .menu-item
+    width auto
+    display table-cell
+    padding 21px 0
+    text-align center
+    .current
+      color input-background-hover-color
+
+/*** Content ***/
+.container
+  size 100%
+  padding-left 220px
+  box-sizing border-box
+/** Shadow **/
+.shadow
+  display none
+  opacity 0
+  fixed 0 0 0 220px
+  z-index 100
+  background-color text-color
+  // transition opacity 0.2s ease
+  .shadow-content
+    absolute 0
+    margin auto
+    text-align center
+    height 18px
+    .logo
+      margin-bottom 10px
+    .shadow-heading
+      color menu-item-heading-color
+      font-size 18px
+      line-height 22px
+      font-weight 600
+    .shadow-subheading
+      display block
+      color menu-item-subheading-color
+      font-size 10px
+      font-weight 400
+      text-transform uppercase
+/** Sliders **/
+.bx-wrapper
+  margin-bottom 0
+  .bx-viewport
+    border 0px none
+    box-shadow none
+    left 0
+    background transparent
+
+.main-slider
+  #bx-pager
+    size 100% 6px
+    margin -2px 0 0
+    relative false
+    display table
+    table-layout fixed
+    .slider-controll
+      display table-cell
+      height 100%
+      background-color #b7b2b3
+    .slider-runner
+      display block
+      height 12px
+      absolute false false 0 0
+      z-index 100
+      background-color #727378
+      transition left 1s ease 0s
+
+  .slide
+    min-width 670px
+    min-height 385px
+    relative false
+    .background
+      size 100%
+      min-width 670px
+      min-height 385px
+    .content
+      absolute 50% false false 50%
+      transform translate(-50%, -50%)
+      text-align center
+      &.slide-1
+        color #24292e
+        .small-text
+          margin-bottom 58px
+          margin-bottom 10vmin
+          font-size 18px
+          font-size 5vmin
+          font-weight 300
+          font-style italic
+        .big-text
+          margin-bottom 94px
+          margin-bottom 13vmin
+          font-size 48px
+          font-size 7vmin
+          text-transform uppercase
+          letter-spacing 15px
+          white-space nowrap
+        hr
+          size 60px 3px
+          margin-bottom 94px
+          margin-bottom 13vmin
+          background-color #24292e
+          border 0 none
+.reviews-slider
+  .slide
+    width 100%
+    color text-color
+  .slide-content
+    max-width 510px;
+    margin auto;
+  .review-heading
+    width 100%
+    display table
+    margin-bottom 20px
+  .review-author
+  .review-rate
+    display table-cell
+    vertical-align middle
+  .review-author
+    font-size 24px
+    text-align left
+  .review-rate
+    text-align right
+    fill star-highlight-color
+    .star
+      size 12px
+      display inline-block
+      margin-left 6px
+      fill inherit
+
+  for i in (1..5)
+    .rate-{i}
+      .star:nth-child(n+{i+1})
+        fill star-empty-color
+
+  .review-text
+    font-size 14px
+    line-height 25px
+    text-align justify
+    text-align-last center
+/** Calculator **/
+.calculator-item
+  size 100% 50px
+  max-width 414px
+input[type="checkbox"]
+input[type="radio"]
+  display none
+  & + label
+    box-sizing border-box
+    font-size 14px
+    line-height 18px
+    text-align left
+    color text-color
+    cursor pointer
+input[type="checkbox"]
+  & + label
+    inline-block vertical-align top
+    &:before
+      content ''
+      size 35px
+      display inline-block
+      background-color input-background-color
+    span
+      color text-semi-transparent-color
+input[type="radio"]
+  & + label
+    size 100% 50px
+    padding 0 20px
+    display table
+    background-color #fff
+    &:hover
+      color #fff
+      background-color input-background-hover-color
+    span
+      display table-cell
+      vertical-align middle
+  &:checked + label
+    color input-background-hover-color
+    cursor default
+    &:hover
+      color #fff
+  &:disabled
+    & + label
+      padding-left 20px !important
+      font-weight bold
+      color text-semi-transparent-color
+      cursor default
+      &:hover
+        color text-semi-transparent-color
+        background-color #fff
+      
+    & ~ label
+      padding-left 30px
+
+.input-wrap
+  width 100%
+  max-width 414px
+  min-height 50px
+  margin-bottom 24px
+  display block
+.translation-calculator
+  text-align justify
+  &:after
+    content ''
+    size 100% 0
+    display inline-block
+    font-size 0
+    line-height 0
+.translation-calculator-documents
+.translation-calculator-inputs
+  width 100%
+  max-width 414px
+  vertical-align top
+  display inline-block
+  *display inline
+  zoom 1
+.translation-calculator-documents
+  max-height 80vh
+  overflow-x hidden
+  overflow-y scroll
+
+/*** Pages ***/
+.page
+  size 100% auto
+  min-height 100%
+  padding 120px 0
+  box-sizing border-box
+  text-align center
+  &.accountant
+    background-color #dae3de
+    background-image: linear-gradient(-90deg, #dae3de, #cad7d0)
+  &.legal
+    background-color #dadce3
+    background-image: linear-gradient(90deg, #dadce3, #cacdd7)
+  &.legalization
+  &.reviews
+  &.translation
+    background-color #dadce3
+    background-image: linear-gradient(90deg, #dadce3, #cacdd7)
+  &.contacts
+    background-color contacts-page-background-color
+
+.page-content
+  width 100%
+  min-width 414px
+  max-width 888px
+  margin auto
+  font-size 0
+
+.page-heading
+  size 100% 108px
+  display table
+  margin-bottom 100px
+.page-title
+.page-image-block
+  display table-cell
+.page-title
+  padding-right 40px
+  vertical-align top
+  font-size 48px
+  line-height 60px
+  text-align left
+  color rgba(0, 0, 0, 0.2)
+  text-transform uppercase
+  h1
+    max-width 550px
+.page-image-block
+  size 108px auto
+  vertical-align middle
+.page-image
+  size 108px
+  border-radius 50%
+  overflow hidden
+  border 1px solid rgba(0, 0, 0, 0.2)
+
+.page-text
+  max-width 490px
+  min-width 414px
+  margin auto
+  line-height 23px
+  font-size 14px
+  font-weight 300
+  color text-color
+
+.page-delimiter
+  size 60px 1px
+  margin 90px auto
+  background-color input-background-hover-color
+
+.block-title
+.block-text
+  text-transform uppercase
+  text-align left
+.block-title
+  margin-bottom 11px
+  font-size 30px
+  line-height 30px
+  color text-color
+.block-text
+  margin-bottom 60px
+  font-size 14px
+  line-height 14px
+  color rgba(25, 27, 28, 0.5)
+  
+
+.block-list
+  margin 0 0 90px 
+  padding 0
+  list-style none
+  text-align left
+  columns: 2 414px;
+  
+.list-item
+  padding 0
+  margin 0 0 20px
+  &:before
+    content ''
+    margin 0 -4px 0 0 
+    display inline-block
+    vertical-align middle
+    line-height 18px
+    size 4px
+    background-color #986b4d
+.list-item-text
+  padding 0 0 0 24px
+  display inline-block
+  vertical-align top
+  font-size 14px
+  line-height 18px
+  color text-color
+    
+/*** Main ***/
+.main-title
+  margin-bottom 60px
+  font-size 18px
+  line-height 18px
+  font-weight 600
+  color input-background-hover-color
+  letter-spacing 8px
+  letter-spacing 0.625
+    
+.advantages-block
+  text-align center
+  .advantages-title    
+    color text-color
+    font-size 30px
+    letter-spacing 8px
+  .call
+    margin-bottom 120px
+.advantages
+  margin 84px 0 60px
+  &:after
+    content ''
+    size 100% 0
+    display inline-block
+    font-size 0
+    line-height 0
+    
+  .advantage
+    width 180px
+    margin 0 20px 30px
+    text-align center
+    vertical-align top
+    display inline-block
+    *display inline
+    zoom 1
+    color text-color
+    &:first-of-type
+      margin-left 0
+    &:last-of-type
+      margin-right 0
+  
+  .image
+    size 120px
+    
+    margin auto
+    border 1px solid input-background-hover-color
+    border-radius 50%
+    overflow hidden
+  h3
+    margin 30px auto
+    font-size 14px
+    font-weight 600
+    text-transform uppercase
+  p
+    font-size 12px
+    font-weight 300
+    line-height 17px
+    opacity .65
+    
+
+/*** Legal ***/
+
+.prices-wrap
+  text-align justify
+  &:after
+    content ''
+    size 100% 0
+    display inline-block
+    font-size 0
+    line-height 0
+    
+  .price-block
+    margin 0 0 30px
+    vertical-align top
+    display inline-block
+    *display inline
+    zoom 1
+    
+.price-title
+  padding 0 0 14px 22px
+  font-size 24px
+  line-height 24px
+  font-weight 600
+  text-transform uppercase
+  color text-transparent-color
+.prices
+  width 100%
+  max-width 414px
+  border-top 1px solid input-border-color
+  tr
+    &.additional
+      td
+        height 34px
+        vertical-align top
+        border-top 0 none
+    td
+      height 50px
+      box-sizing border-box
+      vertical-align middle
+      line-height 24px
+      text-align right
+      background-color input-background-color
+      border-top 1px solid input-border-color
+      &.name
+        width 100%
+        padding-left 20px
+        font-size 14px
+        text-align left
+        color text-color
+      &.price
+        font-size 24px
+        color input-background-hover-color
+      &.units
+        padding 0 14px 0 15px
+      &.prefix
+        padding 0 15px
+      &.units
+      &.prefix
+        font-size 12px
+        font-weight 600
+        color text-semi-transparent-color
+        
+.contacts
+  .block-title
+    color contacts-text-color
+  .block-text
+    color text-color

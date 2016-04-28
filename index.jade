@@ -1,0 +1,57 @@
+:php require_once('./php/route.php'); // Detect current page
+:php require_once('./php/language.php'); // Detect active language
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    link(rel="dns-prefetch" href="https://ajax.googleapis.com")
+    link(rel="dns-prefetch" href="https://fonts.googleapis.com")
+    title='HBMA International'
+    // Favicon
+    link(rel="apple-touch-icon", sizes="57x57", href="/apple-touch-icon-57x57.png")
+    link(rel="apple-touch-icon", sizes="60x60", href="/apple-touch-icon-60x60.png")
+    link(rel="apple-touch-icon", sizes="72x72", href="/apple-touch-icon-72x72.png")
+    link(rel="apple-touch-icon", sizes="76x76", href="/apple-touch-icon-76x76.png")
+    link(rel="apple-touch-icon", sizes="114x114", href="/apple-touch-icon-114x114.png")
+    link(rel="apple-touch-icon", sizes="120x120", href="/apple-touch-icon-120x120.png")
+    link(rel="apple-touch-icon", sizes="144x144", href="/apple-touch-icon-144x144.png")
+    link(rel="apple-touch-icon", sizes="152x152", href="/apple-touch-icon-152x152.png")
+    link(rel="apple-touch-icon", sizes="180x180", href="/apple-touch-icon-180x180.png")
+    link(rel="icon", type="image/png", href="/favicon-32x32.png", sizes="32x32")
+    link(rel="icon", type="image/png", href="/android-chrome-192x192.png", sizes="192x192")
+    link(rel="icon", type="image/png", href="/favicon-96x96.png", sizes="96x96")
+    link(rel="icon", type="image/png", href="/favicon-16x16.png", sizes="16x16")
+    link(rel="manifest", href="/manifest.json")
+    link(rel="mask-icon", href="/safari-pinned-tab.svg", color="#464f59")
+    meta(name="msapplication-TileColor", content="#da532c")
+    meta(name="msapplication-TileImage", content="/mstile-144x144.png")
+    meta(name="theme-color", content="#191b1c")
+    // Fonts
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600,300&subset=cyrillic-ext,latin-ext' rel='stylesheet')
+    // Styles
+    style
+      :php include('./css/jquery.bxslider.css');  // Slider styles
+      :php include('./css/mfs.css');  // Custom select styles
+      :php include('./css/stepper.css');  // Custom number styles
+      :php include('./css/style.css');  // Site styles
+
+  body
+    :php include('./images/sprite.svg');
+    include /source/jade/sidebar
+
+    .container
+      :php include('./pages/'.$page.'.php');
+    .shadow
+      .shadow-content
+        .logo
+        .shadow-heading!="<? echo $language['shadow-heading']; ?>"
+        .shadow-subheading!="<? echo $language['shadow-subheading']; ?>"
+
+  // jQuery
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+  script
+    :php include('./js/jquery.bxslider.min.js'); // Slider scripts
+    :php include('./js/jquery.mfs.min.js'); // Custom select scripts
+    :php include('./js/jquery.fs.stepper.js'); // Custom number scripts
+    :php include('./js/script.js'); // Site scripts
+  script(src='http://localhost:35729/livereload.js')
