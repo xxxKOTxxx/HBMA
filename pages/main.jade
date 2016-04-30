@@ -39,19 +39,19 @@
     p.page-text(data-language="main-about-text")!="<? translate($languages['main']['about']['text']); ?>"
     .page-delimiter
     .advantages-block
-      h2.advantages-title(data-language="main-advantages_title")!="<? translate($languages['main']['advantages_title']); ?>"
+      h2.advantages-title(data-language="main-advantages_title")!="<? translate($languages['main']['advantages']['title']); ?>"
       .advantages
         :php $i = 0;
-        :php foreach($languages['main']['advantages'] as $advantage):
+        :php foreach($languages['main']['advantages']['data'] as $advantage):
         .advantage
           .image(class!="<? set($advantage['class']); ?>")
           h3(
-            data-language="main-advantages"
+            data-language="main-advantages-data"
             data-array!="<? set($i); ?>"
             data-item="title"
           )!="<? translate($advantage['title']); ?>"
           p(
-            data-language="main-advantages"
+            data-language="main-advantages-data"
             data-array!="<? set($i); ?>"
             data-item="text"
           )!="<? translate($advantage['text']); ?>"

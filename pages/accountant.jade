@@ -1,30 +1,29 @@
 :php session_start()  // Start session
 :php require_once('/../php/language.php') // Detect active language
-:php require_once('/../languages/'.$_SESSION['language'].'.php')  // Include active language
 
 .page.accountant
   .page-content
     .page-heading
       .page-title(data-language="accountant-title")
-        h1 <? echo $language['accountant-title']; ?>
+        h1!="<? translate($languages['accountant']['title']); ?>"
       .page-image-block
         .page-image.accountant
-    p.page-text(data-language="accountant-text") <? echo $language['accountant-text']; ?>
+    p.page-text(data-language="accountant-text")!="<? translate($languages['accountant']['text']); ?>"
     .page-delimiter
     .services-block
-      h2.block-title(data-language="accountant-services-title") <? echo $language['accountant-services-title']; ?>
-      p.block-text(data-language="accountant-services-text") <? echo $language['accountant-services-text']; ?>
+      h2.block-title(data-language="accountant-services-title")!="<? translate($languages['accountant']['services']['title']); ?>"
+      p.block-text(data-language="accountant-services-text")!="<? translate($languages['accountant']['services']['text']); ?>"
       ul.block-list.services
-        <? $i = 0; ?>
-        <? foreach($language['accountant-services'] as $service) { ?>
+        :php $i = 0;
+        :php foreach($languages['accountant']['services']['data'] as $service):
         li.list-item.service
           h3.list-item-text(
-              data-language="accountant-services" 
-              data-array!="<? echo $i; ?>"
-            ) <? echo $service; ?>
+              data-language="accountant-services-data" 
+              data-array!="<? set($i); ?>"
+            )!="<? translate($service); ?>"
         |  
-        <? $i++; ?>
-        <? }; ?>
+        :php $i++;
+        :php endforeach
     .calculator-block
       h2.block-title(data-language="accountant-calculator-title") <? echo $language['accountant-calculator-title']; ?>
       p.block-text(data-language="accountant-calculator-text") <? echo $language['accountant-calculator-text']; ?>
@@ -36,7 +35,7 @@
           <? foreach($language['accountant-calculator-activity'] as $activity) { ?>
           option(
             data-language="accountant-calculator-activity" 
-            data-array!="<? echo $i; ?>"
+            data-array!="<? set($i); ?>"
             value!='<?=htmlspecialchars(json_encode($activity[data])); ?>'
           ) <? echo $activity['title']; ?>
           <? $i++; ?>
