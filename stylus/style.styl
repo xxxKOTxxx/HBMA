@@ -188,24 +188,6 @@ aside
     background transparent
 
 .main-slider
-  #bx-pager
-    size 100% 6px
-    margin -2px 0 0
-    relative false
-    display table
-    table-layout fixed
-    .slider-controll
-      display table-cell
-      height 100%
-      background-color #b7b2b3
-    .slider-runner
-      display block
-      height 12px
-      absolute false false 0 0
-      z-index 100
-      background-color #727378
-      transition left 1s ease 0s
-
   .slide
     min-width 670px
     min-height 385px
@@ -218,32 +200,79 @@ aside
       absolute 50% false false 50%
       transform translate(-50%, -50%)
       text-align center
-      &.slide-1
-        color #24292e
-        .small-text
-          margin-bottom 58px
-          margin-bottom 10vmin
-          font-size 18px
-          font-size 5vmin
-          font-weight 300
-          font-style italic
-        .big-text
-          margin-bottom 94px
-          margin-bottom 13vmin
-          font-size 48px
-          font-size 7vmin
-          text-transform uppercase
-          letter-spacing 15px
-          white-space nowrap
-        hr
-          size 60px 3px
-          margin-bottom 94px
-          margin-bottom 13vmin
-          background-color #24292e
-          border 0 none
+      color #24292e
+      .heading
+        margin-bottom 58px
+        margin-bottom 10vmin
+        font-size 18px
+        font-size 5vmin
+        font-weight 300
+        font-style italic
+      .subheading
+        margin-bottom 94px
+        margin-bottom 13vmin
+        font-size 48px
+        font-size 7vmin
+        text-transform uppercase
+        letter-spacing 15px
+        white-space nowrap
+      hr
+        size 60px 3px
+        margin-bottom 94px
+        margin-bottom 13vmin
+        background-color #24292e
+        border 0 none
+
+.slider-pager
+  size 100% 6px
+  relative false
+  #bx-pager
+    size 100% 6px
+    margin -2px 0 0
+    display table
+    table-layout fixed
+    .slider-controll
+      display table-cell
+      height 100%
+      background-color #b7b2b3
+  .slider-runner
+    display block
+    height 12px
+    absolute false false 0 0
+    z-index 100
+    background-color #727378
+    transition left 1s ease 0s
+.slider-wrap
+  relative false
+.controls
+  size 100% 60px
+  absolute 0
+  z-index 1
+  margin auto
+  .arrow-left
+  .arrow-right
+    absolute 0 false
+    size 30px 60px
+    margin auto
+    cursor pointer
+    svg
+      size 100%
+      display block
+      fill input-background-hover-color
+    .bx-next
+    .bx-prev
+      absolute 0
+      size 100%
+      display block
+  .arrow-left
+    left 0
+  .arrow-right
+    right 0
 .reviews-slider
   .slide
     width 100%
+    padding 0 45px
+    box-sizing border-box
     color text-color
   .slide-content
     max-width 510px;

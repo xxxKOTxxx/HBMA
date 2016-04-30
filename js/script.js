@@ -64,10 +64,7 @@ $(document).ready(function() {
         container.html(data);
         menuItems.removeClass('current');
         $('a[href="'+state.url.replace('/', '')+'"]').parent().addClass('current');
-        slider = $('.slider');
-        if(slider.length) {
-          slider.bxSlider(bxSliderOptions);
-        }
+        setSlider();
         if(state.set) {
           if(history && history.pushState) {
             history.pushState(state, state.title, state.url);
@@ -188,32 +185,57 @@ $(document).ready(function() {
     });
 
   /*** Slider ***/
-  var slider = $('.slider');
 
-  var bxSliderOptions = {
-    mode: 'fade',
-    speed: 500,
-    pause: 5000,
-    autoDelay: 3000,
-    auto: true,
-    autoHover: true,
-    randomStart: false,
-    infiniteLoop: true,
-    adaptiveHeight: false,
-    controls: false,
-    pagerCustom: '#bx-pager',
-    slideSelector: '.slide',
-    onSliderLoad: function(){
-      $('.slider-runner').width(100 / $('.slider-controll').length + '%');
+  var bx_slider_options = {
+    main: {
+      mode: 'fade',
+      speed: 500,
+      pause: 5000,
+      autoDelay: 3000,
+      auto: true,
+      autoHover: true,
+      randomStart: false,
+      infiniteLoop: true,
+      adaptiveHeight: false,
+      controls: false,
+      pagerCustom: '#bx-pager',
+      slideSelector: '.slide',
+      onSliderLoad: function(){
+        $('.slider-runner').width(100 / $('.slider-controll').length + '%');
+      },
+      onSlideBefore: function($slideElement, oldIndex, newIndex) {
+        $('.slider-runner').css('left', newIndex * $('.slider-controll').outerWidth() + 'px');
+      }
     },
-    onSlideBefore: function($slideElement, oldIndex, newIndex) {
-      $('.slider-runner').css('left', newIndex * $('.slider-controll').outerWidth() + 'px');
+    reviews: {
+      pager: false,
+      speed: 500,
+      pause: 5000,
+      autoDelay: 3000,
+      auto: true,
+      autoHover: true,
+      randomStart: true,
+      infiniteLoop: true,
+      adaptiveHeight: false,
+      slideSelector: '.slide',
+      nextText: 'nextText',
+      nextSelector: '.arrow-right',
+      prevText: 'prevText',
+      prevSelector: '.arrow-left'
     }
   };
 
-  if(slider.length) {
-    slider.bxSlider(bxSliderOptions);
+  var setSlider = function() {
+    var slider = $('.slider');
+    if(slider.length) {
+      $.each(slider, function() {
+        var slider_type = slider.data('slider');
+        slider.bxSlider(bx_slider_options[slider_type]);
+      });
+    }
   }
+
+  setSlider();
 
   /*** Calculator ***/
   var wholesale_count = 100;

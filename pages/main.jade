@@ -1,40 +1,61 @@
 :php session_start()  // Start session
 :php require_once('/../php/language.php') // Detect active language
-.slider.main-slider
+.slider.main-slider(data-slider="main")
+  :php $i = 0;
+  :php foreach($languages['main']['slider'] as $slide):
   .slide
-    img.background(src="./images/slide-1.jpg" alt='')
-    .content.slide-1
-      .small-text Нет ничего проще
-      .big-text достижения высот
+    img.background(
+      src!="<? set($slide['background']); ?>"
+      alt
+    )
+    .content(class!="slide-<? set($i); ?>")
+      .heading(
+        data-language="main-slider"
+        data-array!="<? set($i); ?>"
+        data-item="heading"
+      )!="<? translate($slide['heading']); ?>"
+      .subheading(
+        data-language="main-slider"
+        data-array!="<? set($i); ?>"
+        data-item="subheading"
+      )!="<? translate($slide['subheading']); ?>"
       hr
       button.call Связаться
-  .slide
-    img.background(src="./images/slide-1.jpg" alt='')
-    .content.slide-1
-      .small-text Нет ничего проще
-      .big-text достижения высот
-      hr
-      button.call Связаться
-#bx-pager
-  a.slider-controll(data-slide-index="0" href="")
-    .slider-runner
-  a.slider-controll(data-slide-index="1" href="")
+  :php $i++;
+  :php endforeach
+.slider-pager
+  #bx-pager
+    :php for($c = 0; $c < $i; $c++):
+    a.slider-controll(
+      data-slide-index!="<? set($c); ?>"
+      href=""
+    )
+    :php endfor
+  .slider-runner
 
 .page.main
   .page-content
-    h1.main-title(data-language="main-about-title") <? echo $language['main-about-title']; ?>
-    p.page-text(data-language="main-about-text") <? echo $language['main-about-text']; ?>
+    h1.main-title(data-language="main-about-title")!="<? translate($languages['main']['about']['title']); ?>"
+    p.page-text(data-language="main-about-text")!="<? translate($languages['main']['about']['text']); ?>"
     .page-delimiter
     .advantages-block
-      h2.advantages-title(data-language="main-advantages-title") <? echo $language['main-advantages-title']; ?>
+      h2.advantages-title(data-language="main-advantages_title")!="<? translate($languages['main']['advantages_title']); ?>"
       .advantages
-        <? $i = 0; ?>
-        <? foreach($language['main-advantages'] as $advantage) { ?>
+        :php $i = 0;
+        :php foreach($languages['main']['advantages'] as $advantage):
         .advantage
-          .image(class!="<? echo $advantage['class']; ?>")
-          h3(data-language="main-advantages" data-array!="<? echo $i; ?>" data-item="title") <? echo $advantage['title']; ?>
-          p(data-language="main-advantages" data-array!="<? echo $i; ?>" data-item="text") <? echo $advantage['text']; ?>
+          .image(class!="<? set($advantage['class']); ?>")
+          h3(
+            data-language="main-advantages"
+            data-array!="<? set($i); ?>"
+            data-item="title"
+          )!="<? translate($advantage['title']); ?>"
+          p(
+            data-language="main-advantages"
+            data-array!="<? set($i); ?>"
+            data-item="text"
+          )!="<? translate($advantage['text']); ?>"
         |  
-        <? $i++; ?>
-        <? }; ?>
-      button.call(data-language="main-call") <? echo $language['main-call']; ?>
+        :php $i++;
+        :php endforeach
+      button.call(data-language="common-call")!="<? translate($languages['common']['call']); ?>"
