@@ -1,56 +1,57 @@
-:php session_start()  // Start session
 :php require_once('/../php/language.php') // Detect active language
 
 .page.accountant
   .page-content
     .page-heading
       .page-title(data-language="accountant-title")
-        h1!="<? translate($languages['accountant']['title']); ?>"
+        h1!="<? set($language['accountant']['title']); ?>"
       .page-image-block
         .page-image.accountant
-    p.page-text(data-language="accountant-text")!="<? translate($languages['accountant']['text']); ?>"
+    p.page-text(data-language="accountant-text")!="<? set($language['accountant']['text']); ?>"
     .page-delimiter
     .services-block
-      h2.block-title(data-language="accountant-services-title")!="<? translate($languages['accountant']['services']['title']); ?>"
-      p.block-text(data-language="accountant-services-text")!="<? translate($languages['accountant']['services']['text']); ?>"
+      h2.block-title(data-language="accountant-services-title")!="<? set($language['accountant']['services']['title']); ?>"
+      p.block-text(data-language="accountant-services-text")!="<? set($language['accountant']['services']['text']); ?>"
       ul.block-list.services
         :php $i = 0;
-        :php foreach($languages['accountant']['services']['data'] as $service):
+        :php foreach($language['accountant']['services']['data'] as $service):
         li.list-item.service
           h3.list-item-text(
               data-language="accountant-services-data" 
               data-array!="<? set($i); ?>"
-            )!="<? translate($service); ?>"
+            )!="<? set($service); ?>"
         |  
         :php $i++;
         :php endforeach
     .calculator-block
-      h2.block-title(data-language="accountant-calculator-title") <? echo $language['accountant-calculator-title']; ?>
-      p.block-text(data-language="accountant-calculator-text") <? echo $language['accountant-calculator-text']; ?>
+      h2.block-title(data-language="accountant-calculator-title")!="<? set($language['accountant']['calculator']['title']); ?>"
+      p.block-text(data-language="accountant-calculator-text")!="<? set($language['accountant']['calculator']['text']); ?>"
       form.calculator.accountant-calculator
         select.calculator-item.calculator-select.accountant-calculator-activity(
           data-affect="accountant-calculator-operations"
         )
-          <? $i = 0; ?>
-          <? foreach($language['accountant-calculator-activity'] as $activity) { ?>
+          :php $i = 0;
+          :php foreach($language['accountant']['calculator']['data'] as $activity):
           option(
-            data-language="accountant-calculator-activity" 
+            data-language="accountant-calculator" 
             data-array!="<? set($i); ?>"
-            value!='<?=htmlspecialchars(json_encode($activity[data])); ?>'
-          ) <? echo $activity['title']; ?>
-          <? $i++; ?>
-          <? }; ?>
+            data-item="title"
+            value!="<?=htmlspecialchars(json_encode($activity['data'])); ?>"
+          )!="<? set($activity['title']); ?>"
+          :php $i++;
+          :php endforeach
         select.calculator-item.calculator-select.accountant-calculator-operations
-          <? foreach($language['accountant-calculator-activity'][0]['data'] as $operations) { ?>
+          :php foreach($language['accountant']['calculator']['data']['0']['data'] as $operations):
+          :php print_r($operations);
           option(
             value=''
-            data-price!="<?=$operations['price']; ?>"
-            data-prefix!="<?=$operations['prefix']; ?>"
-            data-units!="<?=$operations['units']; ?>"
-          ) <? echo $operations['title']; ?> 
-          <? }; ?>
+            data-price!="<? set($operations['price']); ?>"
+            data-prefix!="<? set($operations['prefix']); ?>"
+            data-units!="<? set($operations['units']); ?>"
+          )!="<? set($operations['title']); ?>"
+          :php endforeach
         .calculator-result-block
-          p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant-calculator-result']; ?>:
+          p.result-text(data-language="accountant-calculator-result")!="<? set($language['accountant']['calculator']['result']); ?>"
             span.result-prefix
             span.result-value
             span.result-units

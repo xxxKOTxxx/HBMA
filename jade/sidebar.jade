@@ -2,14 +2,14 @@ aside
   nav
     ul.top-menu
       :php $i = 0;
-      :php foreach($languages['menu']['top'] as $menu_item):
+      :php foreach($language['menu']['top'] as $menu_item):
       li.menu-item(class!="<? set((($menu_item['url'] == $page) || ($menu_item['url'] == '.' && $page == 'main')), true, 'current'); set($menu_item['icon'], true, ' icon'); ?>")
         :php if($menu_item["icon"]):
         .menu-icon(class!="<? set($menu_item['icon'], true); ?>")
         :php endif
         a.page-link(
           href!="<? set($menu_item['url']); ?>"
-          title!="<? translate($menu_item['title']); ?>"
+          title!="<? set($menu_item['title']); ?>"
           data-language="menu-top"
           data-array!="<?set($i); ?>"
         )
@@ -17,22 +17,22 @@ aside
             data-language="menu-top"
             data-array!="<? set($i); ?>"
             data-item="heading"
-          )!="<? translate($menu_item['heading']); ?>"
+          )!="<? set($menu_item['heading']); ?>"
           .subheading(
             data-language="menu-top"
             data-array!="<? set($i); ?>"
             data-item="subheading"
-          )!="<? translate($menu_item['subheading']); ?>"
+          )!="<? set($menu_item['subheading']); ?>"
       :php $i++;
       :php endforeach
     ul.bottom-menu
       :php $i = 0;
-      :php foreach($languages['menu']['bottom'] as $menu_item):
+      :php foreach($language['menu']['bottom'] as $menu_item):
       li.menu-item()
       li.menu-item(class!="<? set(($menu_item['url'] == $page), true, 'current'); ?>")
         a.page-link(
           href!="<? set($menu_item['url']); ?>"
-          title!="<? translate($menu_item['title']); ?>"
+          title!="<? set($menu_item['title']); ?>"
           data-language="menu-bottom"
           data-array!="<? set($i); ?>"
         )
@@ -40,22 +40,22 @@ aside
             data-language="menu-bottom"
             data-array!="<? set($i); ?>"
             data-item="heading"
-          )!="<? translate($menu_item['heading']); ?>"
+          )!="<? set($menu_item['heading']); ?>"
       :php $i++;
       :php endforeach
     .language-menu
       ul.languages
         :php $i = 0;
-        :php foreach($languages['menu']['languages'] as $menu_item):
+        :php foreach($language['menu']['languages'] as $menu_item):
         li.menu-item
           a.language(
             class!="<? set(($menu_item['id'] == $_SESSION['language']), true, 'current'); ?>"
             href!=".?language=<? set($menu_item['id']); ?>"
-            title!="<? translate($menu_item['title']); ?>"
+            title!="<? set($menu_item['title']); ?>"
             data-language="menu-languages"
             data-array!="<? set($i); ?>"
             data-set-language!="<? set($menu_item['id']); ?>"
-          )!="<? translate($menu_item['heading']); ?>"
+          )!="<? set($menu_item['heading']); ?>"
         :php $i++;
         :php endforeach
 

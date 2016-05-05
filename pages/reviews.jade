@@ -1,24 +1,23 @@
-:php session_start()  // Start session
 :php require_once('/../php/language.php') // Detect active language
 
 .page.reviews
   .page-content
     .page-heading
       .page-title
-        h1(data-language="reviews-title") <? translate($languages['reviews']['title']); ?>
+        h1(data-language="reviews-title")!="<? set($language['reviews']['title']); ?>"
 
     .slider-wrap
       .slider.reviews-slider(data-slider="reviews")
-        <? $i = 0; ?>
-        <? foreach($languages['reviews']['slider'] as $slide) { ?>
+        :php $i = 0;
+        :php foreach($language['reviews']['slider'] as $slide):
         .slide
           .slide-content
             .review-heading
               .review-author(
                 data-language="reviews-slider"
-                data-array!="<? echo $i; ?>"
+                data-array!="<? set($i); ?>"
                 data-item='author'
-              ) <? translate($slide['author']); ?>
+              )!="<? set($slide['author']); ?>"
               .review-rate(class!="rate-<? set($slide['rate']); ?>")
                 svg.star
                   use(xlink:href="#star")
@@ -32,11 +31,11 @@
                   use(xlink:href="#star")
             .review-text(
                 data-language="reviews-slider"
-                data-array!="<? echo $i; ?>"
+                data-array!="<? set($i); ?>"
                 data-item='text'
-              ) <? translate($slide['text']); ?>
-        <? $i++; ?>
-        <? }; ?>
+              )!="<? set($slide['text']); ?>"
+        :php $i++;
+        :php endforeach
       .controls
         .arrow-left
           svg
@@ -46,15 +45,15 @@
             use(xlink:href="#arrow-right")
     .page-delimiter
     .message-block
-      h2.block-title(data-language="reviews-message-title") <? translate($languages['reviews']['message']['title']); ?>
-      p.block-text(data-language="reviews-message-text")<? translate($languages['reviews']['message']['text']); ?> 
+      h2.block-title(data-language="reviews-message-title")!="<? set($language['reviews']['message']['title']); ?>"
+      p.block-text(data-language="reviews-message-text")!="<? set($language['reviews']['message']['text']); ?>"
       form.reviews-message
 
         input(
           type="email"
           name="email"
           data-language="contacts-send-email"
-          placeholder!="<? echo $language['contacts-send-email']; ?>"
+          placeholder!="<? set($language['contacts-send-email']); ?>"
         )
         .rate
           .title
@@ -63,6 +62,6 @@
         textarea(
           name="message"
           data-language="contacts-send-message"
-          placeholder!="<? echo $language['contacts-send-message']; ?>"
+          placeholder!="<? set($language['contacts-send-message']); ?>"
         )
-        button.send(data-language="contacts-send") <? echo $language['contacts-send']; ?>
+        button.send(data-language="contacts-send")!="<? set($language['contacts-send']); ?>"
