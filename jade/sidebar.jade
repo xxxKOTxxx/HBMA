@@ -8,21 +8,21 @@ aside
         .menu-icon(class!="<? set($menu_item['icon'], true); ?>")
         :php endif
         a.page-link(
-          href!="<? set($menu_item['url']); ?>"
-          title!="<? set($menu_item['title']); ?>"
+          href!="<? echo $menu_item['url']; ?>"
+          title!="<? echo $menu_item['title']; ?>"
           data-language="menu-top"
-          data-array!="<?set($i); ?>"
+          data-array!="<? echo $i; ?>"
         )
           .heading(
             data-language="menu-top"
-            data-array!="<? set($i); ?>"
+            data-array!="<? echo $i; ?>"
             data-item="heading"
-          )!="<? set($menu_item['heading']); ?>"
+          ) <? echo $menu_item['heading']; ?>
           .subheading(
             data-language="menu-top"
-            data-array!="<? set($i); ?>"
+            data-array!="<? echo $i; ?>"
             data-item="subheading"
-          )!="<? set($menu_item['subheading']); ?>"
+          ) <? echo $menu_item['subheading']; ?>
       :php $i++;
       :php endforeach
     ul.bottom-menu
@@ -31,16 +31,16 @@ aside
       li.menu-item()
       li.menu-item(class!="<? set(($menu_item['url'] == $page), true, 'current'); ?>")
         a.page-link(
-          href!="<? set($menu_item['url']); ?>"
-          title!="<? set($menu_item['title']); ?>"
+          href!="<? echo $menu_item['url']; ?>"
+          title!="<? echo $menu_item['title']; ?>"
           data-language="menu-bottom"
-          data-array!="<? set($i); ?>"
+          data-array!="<? echo $i; ?>"
         )
           .heading(
             data-language="menu-bottom"
-            data-array!="<? set($i); ?>"
+            data-array!="<? echo $i; ?>"
             data-item="heading"
-          )!="<? set($menu_item['heading']); ?>"
+          ) <? echo $menu_item['heading']; ?>
       :php $i++;
       :php endforeach
     .language-menu
@@ -50,12 +50,12 @@ aside
         li.menu-item
           a.language(
             class!="<? set(($menu_item['id'] == $_SESSION['language']), true, 'current'); ?>"
-            href!=".?language=<? set($menu_item['id']); ?>"
-            title!="<? set($menu_item['title']); ?>"
+            href!=".?language=<? echo $menu_item['id']; ?>"
+            title!="<? echo $menu_item['title']; ?>"
             data-language="menu-languages"
-            data-array!="<? set($i); ?>"
-            data-set-language!="<? set($menu_item['id']); ?>"
-          )!="<? set($menu_item['heading']); ?>"
+            data-array!="<? echo $i; ?>"
+            data-set-language!="<? echo $menu_item['id']; ?>"
+          ) <? echo $menu_item['heading']; ?>
         :php $i++;
         :php endforeach
 

@@ -4,28 +4,28 @@
   .page-content
     .page-heading
       .page-title(data-language="accountant-title")
-        h1!="<? set($language['accountant']['title']); ?>"
+        h1 <? echo $language['accountant']['title']; ?>
       .page-image-block
         .page-image.accountant
-    p.page-text(data-language="accountant-text")!="<? set($language['accountant']['text']); ?>"
+    p.page-text(data-language="accountant-text") <? echo $language['accountant']['text']; ?>
     .page-delimiter
     .services-block
-      h2.block-title(data-language="accountant-services-title")!="<? set($language['accountant']['services']['title']); ?>"
-      p.block-text(data-language="accountant-services-text")!="<? set($language['accountant']['services']['text']); ?>"
+      h2.block-title(data-language="accountant-services-title") <? echo $language['accountant']['services']['title']; ?>
+      p.block-text(data-language="accountant-services-text") <? echo $language['accountant']['services']['text']; ?>
       ul.block-list.services
         :php $i = 0;
         :php foreach($language['accountant']['services']['data'] as $service):
         li.list-item.service
           h3.list-item-text(
               data-language="accountant-services-data" 
-              data-array!="<? set($i); ?>"
-            )!="<? set($service); ?>"
+              data-array!="<? echo $i; ?>"
+            ) <? echo $service; ?>
         |  
         :php $i++;
         :php endforeach
     .calculator-block
-      h2.block-title(data-language="accountant-calculator-title")!="<? set($language['accountant']['calculator']['title']); ?>"
-      p.block-text(data-language="accountant-calculator-text")!="<? set($language['accountant']['calculator']['text']); ?>"
+      h2.block-title(data-language="accountant-calculator-title") <? echo $language['accountant']['calculator']['title']; ?>
+      p.block-text(data-language="accountant-calculator-text") <? echo $language['accountant']['calculator']['text']; ?>
       form.calculator.accountant-calculator
         select.calculator-item.calculator-select.accountant-calculator-activity(
           data-affect="accountant-calculator-operations"
@@ -34,24 +34,23 @@
           :php foreach($language['accountant']['calculator']['data'] as $activity):
           option(
             data-language="accountant-calculator" 
-            data-array!="<? set($i); ?>"
+            data-array!="<? echo $i; ?>"
             data-item="title"
             value!="<?=htmlspecialchars(json_encode($activity['data'])); ?>"
-          )!="<? set($activity['title']); ?>"
+          ) <? echo $activity['title']; ?>
           :php $i++;
           :php endforeach
         select.calculator-item.calculator-select.accountant-calculator-operations
           :php foreach($language['accountant']['calculator']['data']['0']['data'] as $operations):
-          :php print_r($operations);
           option(
             value=''
-            data-price!="<? set($operations['price']); ?>"
-            data-prefix!="<? set($operations['prefix']); ?>"
-            data-units!="<? set($operations['units']); ?>"
-          )!="<? set($operations['title']); ?>"
+            data-price!="<? echo $operations['price']; ?>"
+            data-prefix!="<? echo $operations['prefix']; ?>"
+            data-units!="<? echo $operations['units']; ?>"
+          ) <? echo $operations['title']; ?>
           :php endforeach
         .calculator-result-block
-          p.result-text(data-language="accountant-calculator-result")!="<? set($language['accountant']['calculator']['result']); ?>"
+          p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant']['calculator']['result']; ?>
             span.result-prefix
             span.result-value
             span.result-units

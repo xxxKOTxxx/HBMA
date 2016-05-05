@@ -4,20 +4,20 @@
   :php foreach($language['main']['slider'] as $slide):
   .slide
     img.background(
-      src!="<? set($slide['background']); ?>"
+      src!="<? echo $slide['background']; ?>"
       alt
     )
-    .content(class!="slide-<? set($i); ?>")
+    .content(class!="slide-<? echo $i; ?>")
       .heading(
         data-language="main-slider"
-        data-array!="<? set($i); ?>"
+        data-array!="<? echo $i; ?>"
         data-item="heading"
-      )!="<? set($slide['heading']); ?>"
+      ) <? echo $slide['heading']; ?>
       .subheading(
         data-language="main-slider"
-        data-array!="<? set($i); ?>"
+        data-array!="<? echo $i; ?>"
         data-item="subheading"
-      )!="<? set($slide['subheading']); ?>"
+      ) <? echo $slide['subheading']; ?>
       hr
       button.call Связаться
   :php $i++;
@@ -26,7 +26,7 @@
   #bx-pager
     :php for($c = 0; $c < $i; $c++):
     a.slider-controll(
-      data-slide-index!="<? set($c); ?>"
+      data-slide-index!="<? echo $c; ?>"
       href=""
     )
     :php endfor
@@ -34,27 +34,27 @@
 
 .page.main
   .page-content
-    h1.main-title(data-language="main-about-title")!="<? set($language['main']['about']['title']); ?>"
-    p.page-text(data-language="main-about-text")!="<? set($language['main']['about']['text']); ?>"
+    h1.main-title(data-language="main-about-title") <? echo $language['main']['about']['title']; ?>
+    p.page-text(data-language="main-about-text") <? echo $language['main']['about']['text']; ?>
     .page-delimiter
     .advantages-block
-      h2.advantages-title(data-language="main-advantages_title")!="<? set($language['main']['advantages']['title']); ?>"
+      h2.advantages-title(data-language="main-advantages_title") <? echo $language['main']['advantages']['title']; ?>
       .advantages
         :php $i = 0;
         :php foreach($language['main']['advantages']['data'] as $advantage):
         .advantage
-          .image(class!="<? set($advantage['class']); ?>")
+          .image(class!="<? echo $advantage['class']; ?>")
           h3(
             data-language="main-advantages-data"
-            data-array!="<? set($i); ?>"
+            data-array!="<? echo $i; ?>"
             data-item="title"
-          )!="<? set($advantage['title']); ?>"
+          ) <? echo $advantage['title']; ?>
           p(
             data-language="main-advantages-data"
-            data-array!="<? set($i); ?>"
+            data-array!="<? echo $i; ?>"
             data-item="text"
-          )!="<? set($advantage['text']); ?>"
+          ) <? echo $advantage['text']; ?>
         |  
         :php $i++;
         :php endforeach
-      button.call(data-language="common-call")!="<? set($language['common']['call']); ?>"
+      button.call(data-language="common-call") <? echo $language['common']['call']; ?>

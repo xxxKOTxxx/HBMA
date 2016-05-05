@@ -33,12 +33,15 @@ $(document).ready(function() {
 
   var getState = function(target, set) {
     var url = target.attr('href') || target.parent().attr('href');
+    if(url == '.') {
+      url = '';
+    }
     var current_url = window.location.pathname.replace('/', '');
     if(current_url == url) {
       return false;
     }
     var page = '/main';
-    if(url != '.') {
+    if(url != '') {
       page = '/'+url;
     };
     var path = window.location.pathname.split('/');
