@@ -152,17 +152,20 @@ $(document).ready(function() {
       if(!language_data) {
         return;
       }
-      if($(this).prop('nodeName') == 'A') {
-        $(this).prop('title', language_data.title);
-      }
-      else {
-        if($(this).prop('nodeName') == 'OPTION') {
-          $(this).prop('value', json_encode(language_data.data));
-        }
-        else {
+      switch($(this).prop('nodeName')) {
+        case 'INPUT':
+        case 'TEXTAREA':
+          $(this).prop('placeholder', language_data);
+        case 'A':
+          $(this).prop('title', language_data.title);
+          break;
+          break;
+        case 'OPTION':
+          $(this).prop('value', json_encode(language_data.value));
+          break;
+        default:
           $(this).text(language_data);
-        }
-      }
+      };
     });
   };
 
