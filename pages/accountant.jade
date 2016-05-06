@@ -36,12 +36,12 @@
             data-language="accountant-calculator" 
             data-array!="<? echo $i; ?>"
             data-item="title"
-            value!="<?=htmlspecialchars(json_encode($activity['data'])); ?>"
+            value!="<?=htmlspecialchars(json_encode($activity['value'])); ?>"
           ) <? echo $activity['title']; ?>
           :php $i++;
           :php endforeach
         select.calculator-item.calculator-select.accountant-calculator-operations
-          :php foreach($language['accountant']['calculator']['data']['0']['data'] as $operations):
+          :php foreach($language['accountant']['calculator']['data']['0']['value'] as $operations):
           option(
             value=''
             data-price!="<? echo $operations['price']; ?>"
