@@ -14,9 +14,7 @@
           .slide-content
             .review-heading
               .review-author(
-                data-language="reviews-slider"
-                data-array!="<? echo $i; ?>"
-                data-item='author'
+                data-language!="reviews-slider-<? echo $i; ?>-author"
               ) <? echo $slide['author']; ?>
               .review-rate(class!="rate-<? echo $slide['rate']; ?>")
                 svg.star
@@ -30,9 +28,7 @@
                 svg.star
                   use(xlink:href="#star")
             .review-text(
-                data-language="reviews-slider"
-                data-array!="<? echo $i; ?>"
-                data-item='text'
+                data-language!="reviews-slider-<? echo $i; ?>-text"
               ) <? echo $slide['text']; ?>
         :php $i++;
         :php endforeach

@@ -4,37 +4,35 @@
   .page-content
     .page-heading
       .page-title
-        h1(data-language="translation-title")!="<? translate($language['translation']['title']); ?>"
+        h1(data-language="translation-title") <? echo $language['translation']['title']; ?>
       .page-image-block
         .page-image.translation
-    p.page-text(data-language="translation-text")!="<? translate($language['translation']['text']); ?>"
+    p.page-text(data-language="translation-text") <? echo $language['translation']['text']; ?>
     .page-delimiter
     .calculator-block
-      h2.block-title(data-language="translation-calculator-title")!="<? translate($language['translation']['calculator']['title']); ?>"
-      p.block-text(data-language="translation-calculator-text")!="<? translate($language['translation']['calculator']['text']); ?>"
+      h2.block-title(data-language="translation-calculator-title") <? echo $language['translation']['calculator']['title']; ?>
+      p.block-text(data-language="translation-calculator-text") <? echo $language['translation']['calculator']['text']; ?>
       form.calculator.translation-calculator
         .small-block.translation-calculator-documents(data-affect="translation-calculator-language")
           :php $i = 0;
-          :php foreach($language['translation-calculator-documents'] as $document) {
-          :php echo '<input type="radio" name="radio" id="radio-'.$i.'" class="calculator-item calculator-radio" '.$document['status'].' value="'.htmlspecialchars(json_encode($language['translation-calculator-prices'][$document['price']])).'" />'
+          :php foreach($language['translation']['calculator']['documents'] as $document) {
+          :php echo '<input type="radio" name="radio" id="radio-'.$i.'" class="calculator-item calculator-radio" '.$document['status'].' value="'.htmlspecialchars(json_encode($language['translation']['calculator']['prices'][$document['price']])).'" />'
           label(
             for!="radio-<? echo $i; ?>"
-            data-language="translation-calculator-documents"
-            data-array!="<? echo $i; ?>"
-            data-item='title'
+            data-language!="translation-calculator-documents-<? echo $i; ?>-title"
           )
-            span <? translate($document['title']); ?>
+            span <? echo $document['title']; ?>
           :php $i++
           :php }
         |  
         .translation-calculator-inputs
           .input-wrap
             select.calculator-item.calculator-select.translation-calculator-language
-              <? foreach($language['translation-calculator-prices']['text'] as $price) { ?>
+              <? foreach($language['translation']['calculator']['prices']['text'] as $price) { ?>
               option(
                 data-price!='<?=htmlspecialchars(json_encode($price[price])); ?>'
                 value=''
-              ) <? translate($price['title']); ?>
+              ) <? echo $price['title']; ?>
               <? }; ?>
           .input-wrap
             input.calculator-item.calculator-count.calculator-number.translation-calculator-pages(
@@ -42,12 +40,13 @@
               value=''
               min="1"
               max="1000000"
-              placeholder!="<?=$language['translation-calculator-number']?>"
-              data-units!="<?=$language['translation-calculator-units']?>"
+              placeholder!="<?=$language['translation']['calculator']['number']?>"
+              data-language!="translation-calculator-number"
+              data-units!="<?=$language['translation']['calculator']['units']?>"
             )
           .translation-calculator-modificators
             <? $i = 0; ?>
-            <? foreach($language['translation-calculator-modificators'] as $modificator) { ?>
+            <? foreach($language['translation']['calculator']['modificators'] as $modificator) { ?>
             .input-wrap
               input.calculator-item.calculator-modificator.calculator-checkbox(
                 id!="checkbox-<? echo $i; ?>"
@@ -57,16 +56,14 @@
               )
               label(
                 for!="checkbox-<? echo $i; ?>"
-                data-language="translation-calculator-modificators" 
-                data-array!="<? echo $i; ?>"
-                data-item='title'
-              ) <? translate($modificator['title']); ?>
-                span <? translate($modificator['text']); ?>
+                data-language!="translation-calculator-modificators-<? echo $i; ?>-title"
+              ) <? echo $modificator['title']; ?>
+                span <? echo $modificator['text']; ?>
             <? $i++; ?>
             <? }; ?>
           .calculator-result-block
-            p.result-text(data-language="translation-calculator-result") <? translate($language['translation']['calculator']['result']); ?>
+            p.result-text(data-language="translation-calculator-result") <? echo $language['translation']['calculator']['result']; ?>
               span.result-prefix
               span.result-value
               span.result-units
-      button.call(data-language="translation-call") <? translate($language['translation']['call']); ?>
+      button.call(data-language="common-call") <? echo $language['common']['call']; ?>

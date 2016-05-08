@@ -118,19 +118,12 @@ $(document).ready(function() {
   /*** Languages ***/
   var languageLink = $('a.language');
 
-  var getLanguageItem = function(data, path, array, item) {
+  var getLanguageItem = function(data, path) {
     if(!path) {
       return;
     }
     var result = data;
     var path_array = path.split('-');
-
-    if(typeof array !== 'undefined') {
-      path_array.push(array);
-    }
-    if(typeof item !== 'undefined') {
-      path_array.push(item);
-    }
     for (var i = 0; i <= path_array.length - 1; i++) {
       result = result[path_array[i]];
       if(typeof result == 'undefined') {
@@ -146,9 +139,7 @@ $(document).ready(function() {
     var languageNodes = $('[data-language]');
     $.each(languageNodes, function() {
       var path = $(this).data('language');
-      var array = $(this).data('array');
-      var item = $(this).data('item');
-      var language_data = getLanguageItem(data, path, array, item);
+      var language_data = getLanguageItem(data, path);
       if(!language_data) {
         return;
       }
@@ -161,7 +152,7 @@ $(document).ready(function() {
           break;
           break;
         case 'OPTION':
-          $(this).prop('value', json_encode(language_data.value));
+          $(this).prop('value', JSON.stringify(language_data.value));
           break;
         default:
           $(this).text(language_data);
@@ -191,7 +182,6 @@ $(document).ready(function() {
     });
 
   /*** Slider ***/
-
   var bx_slider_options = {
     main: {
       mode: 'fade',
@@ -355,7 +345,7 @@ $(document).ready(function() {
   };
   var getCalculatorUnits = function(calculator) {
     var target = calculator.find('[data-units]');
-    var units = target.data('units') || '';
+    var units = target.data('units') || false;
     return units;
   };
 
@@ -395,15 +385,17 @@ $(document).ready(function() {
     var type = countData.type;
     var price = getCalculatorPrice(calculator, type);
     var modificator = getCalculatorModificator(calculator);
-
-    var value = parseInt(price * count * modificator);
-
-    var prefix = getCalculatorPrefix(calculator);
-    var units = false;
-    if(value) {
-      units = getCalculatorUnits(calculator);
+console.log('price',typeof price)
+    if(typeof price == 'string') {
+      var value = price;
+      var prefix = false;
+      var units = false;
     }
-
+    else {
+      var value = parseInt(price * count * modificator);
+      var prefix = getCalculatorPrefix(calculator);
+      var units = getCalculatorUnits(calculator);
+    };
     var data = {
       "prefix": prefix,
       "value": value,

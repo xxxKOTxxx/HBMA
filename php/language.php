@@ -1,5 +1,7 @@
 <?php
-  session_start();  // Start session
+	if(!isset($_COOKIE["PHPSESSID"])) {
+	  session_start();
+	}
 	$defaultLanguage = 'en';	// Set default language
 	$availableLanguages = array(	// Set available languages
 			'ru' => array('ru','be','ky','ab','mo','et','lv'),
@@ -78,9 +80,9 @@
 	};
 
 	/* Set language */
-	function setLanguage($language) {
+	function setLanguage($language, $cookie_time) {
 		$_SESSION['language'] = $language;
-		setcookie("language", $language, time() + $cookie_time); // Set cookie
+		setcookie('language', $language, time() + $cookie_time, '/'); // Set cookie
 	};
 
 	/* Get language data */
@@ -118,7 +120,7 @@
 	};
 
 	$current_language = getLanguage($availableLanguages, $defaultLanguage);
-	setLanguage($current_language);
+	setLanguage($current_language, $cookie_time);
 
 	$languages_data = getLanguagesData($languages);
 	$language = getSingleLanguageData($languages_data, $current_language);

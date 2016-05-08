@@ -10,18 +10,13 @@ aside
         a.page-link(
           href!="<? echo $menu_item['url']; ?>"
           title!="<? echo $menu_item['title']; ?>"
-          data-language="menu-top"
-          data-array!="<? echo $i; ?>"
+          data-language!="menu-top-<? echo $i; ?>"
         )
           .heading(
-            data-language="menu-top"
-            data-array!="<? echo $i; ?>"
-            data-item="heading"
+            data-language!="menu-top-<? echo $i; ?>-heading"
           ) <? echo $menu_item['heading']; ?>
           .subheading(
-            data-language="menu-top"
-            data-array!="<? echo $i; ?>"
-            data-item="subheading"
+            data-language!="menu-top-<? echo $i; ?>-subheading"
           ) <? echo $menu_item['subheading']; ?>
       :php $i++;
       :php endforeach
@@ -33,13 +28,10 @@ aside
         a.page-link(
           href!="<? echo $menu_item['url']; ?>"
           title!="<? echo $menu_item['title']; ?>"
-          data-language="menu-bottom"
-          data-array!="<? echo $i; ?>"
+          data-language!="menu-bottom-<? echo $i; ?>"
         )
           .heading(
-            data-language="menu-bottom"
-            data-array!="<? echo $i; ?>"
-            data-item="heading"
+            data-language!="menu-bottom-<? echo $i; ?>-heading"
           ) <? echo $menu_item['heading']; ?>
       :php $i++;
       :php endforeach
@@ -52,8 +44,7 @@ aside
             class!="<? set(($menu_item['id'] == $_SESSION['language']), true, 'current'); ?>"
             href!=".?language=<? echo $menu_item['id']; ?>"
             title!="<? echo $menu_item['title']; ?>"
-            data-language="menu-languages"
-            data-array!="<? echo $i; ?>"
+            data-language!="menu-languages-<? echo $i; ?>"
             data-set-language!="<? echo $menu_item['id']; ?>"
           ) <? echo $menu_item['heading']; ?>
         :php $i++;

@@ -10,14 +10,10 @@
     )
     .content(class!="slide-<? echo $i; ?>")
       .heading(
-        data-language="main-slider"
-        data-array!="<? echo $i; ?>"
-        data-item="heading"
+        data-language!="main-slider-<? echo $i; ?>-heading"
       ) <? echo $slide['heading']; ?>
       .subheading(
-        data-language="main-slider"
-        data-array!="<? echo $i; ?>"
-        data-item="subheading"
+        data-language!="main-slider-<? echo $i; ?>-subheading"
       ) <? echo $slide['subheading']; ?>
       hr
       button.call Связаться
@@ -46,14 +42,10 @@
         .advantage
           .image(class!="<? echo $advantage['class']; ?>")
           h3(
-            data-language="main-advantages-data"
-            data-array!="<? echo $i; ?>"
-            data-item="title"
+            data-language!="main-advantages-data-<? echo $i; ?>-title"
           ) <? echo $advantage['title']; ?>
           p(
-            data-language="main-advantages-data"
-            data-array!="<? echo $i; ?>"
-            data-item="text"
+            data-language!="main-advantages-data-<? echo $i; ?>-text"
           ) <? echo $advantage['text']; ?>
         |  
         :php $i++;

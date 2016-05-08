@@ -17,8 +17,7 @@
         :php foreach($language['accountant']['services']['data'] as $service):
         li.list-item.service
           h3.list-item-text(
-              data-language="accountant-services-data"
-              data-array!="<? echo $i; ?>"
+              data-language!="accountant-services-data-<? echo $i; ?>"
             ) <? echo $service; ?>
         |  
         :php $i++;
@@ -27,15 +26,17 @@
       h2.block-title(data-language="accountant-calculator-title") <? echo $language['accountant']['calculator']['title']; ?>
       p.block-text(data-language="accountant-calculator-text") <? echo $language['accountant']['calculator']['text']; ?>
       form.calculator.accountant-calculator
+        :php print_r($language['accountant']['calculator']['data']);
+        :php foreach($language['accountant']['calculator']['data'] as $test):
+        p <? echo $test['title']; ?>
+        :php endforeach
         select.calculator-item.calculator-select.accountant-calculator-activity(
           data-affect="accountant-calculator-operations"
         )
           :php $i = 0;
           :php foreach($language['accountant']['calculator']['data'] as $activity):
           option(
-            data-language="accountant-calculator" 
-            data-array!="<? echo $i; ?>"
-            data-item="title"
+            data-language!="accountant-calculator-data-<? echo $i; ?>-title"
             value!="<?=htmlspecialchars(json_encode($activity['value'])); ?>"
           ) <? echo $activity['title']; ?>
           :php $i++;
