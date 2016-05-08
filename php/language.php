@@ -1,4 +1,5 @@
 <?php
+  session_start();
 	if(!isset($_COOKIE["PHPSESSID"])) {
 	  session_start();
 	}
@@ -15,6 +16,10 @@
 	else {
 		$path = '../';
 	}
+$test1 = $_REQUEST['language'];
+$test2 = $_COOKIE['language'] ;
+$test3 = $_SESSION['language'];
+
 	require_once($path.'languages/languages.php');	// Include languages file
 	/* Detect user language */
 	function getUserLanguage($availableLanguages, $defaultLanguage) {
@@ -54,7 +59,7 @@
 
 	/* Check language */
 	function checkLanguage($language, $availableLanguages) {
-		return array_key_exists($_REQUEST['language'], $availableLanguages) ? true : false;
+		return array_key_exists($language, $availableLanguages) ? true : false;
 	};
 
 	/* Detect language */
@@ -130,4 +135,5 @@
 		$responce = json_encode($language);
 		echo $responce;
 	};
+
 ?>

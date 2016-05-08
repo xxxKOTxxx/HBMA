@@ -167,7 +167,9 @@ $(document).ready(function() {
       type: 'POST',
       url: 'php/language.php',
       data: 'type=ajax&language='+language+'&page='+page,
-      success: function(json){
+      success: function(json) {
+        expires = new Date($.now()+31556926000).toGMTString();
+        document.cookie = 'language='+language+';expires='+expires+';path=/';
         setLanguage(json);
         languageLink.removeClass('current');
         target.addClass('current');
