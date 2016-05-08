@@ -1,4 +1,4 @@
-:php require_once('/../php/language.php') // Detect active language
+:php if(!isset($language)) require_once('../php/language.php'); // Detect active language
 
 .page.reviews
   .page-content

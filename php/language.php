@@ -9,12 +9,13 @@
       'en' => 'en'
 		);
 	$cookie_time = 31556926;
-
-	if(!isset($path)) {
-		$path = '/..';
+	if(isset($path)) {
+		$path = './';
 	}
-	require_once($path.'/languages/languages.php');	// Include languages file
-
+	else {
+		$path = '../';
+	}
+	require_once($path.'languages/languages.php');	// Include languages file
 	/* Detect user language */
 	function getUserLanguage($availableLanguages, $defaultLanguage) {
 		if(($userLanguages = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']))) {
