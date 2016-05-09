@@ -40,7 +40,8 @@
         :php $i = 0;
         :php foreach($language['main']['advantages']['data'] as $advantage):
         .advantage
-          .image(class!="<? echo $advantage['class']; ?>")
+          svg.advantage-image
+            use(xlink:href!="#<? echo $advantage['class']; ?>")
           h3(
             data-language!="main-advantages-data-<? echo $i; ?>-title"
           ) <? echo $advantage['title']; ?>

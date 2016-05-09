@@ -6,7 +6,8 @@
       .page-title
         h1(data-language="legal-title") <? echo $language['legal']['title']; ?>
       .page-image-block
-        .page-image.legal
+        svg.page-image
+          use(xlink:href="#legal")
     p.page-text(data-language="legal-text") <? echo $language['legal']['text']; ?>
     .page-delimiter
     .services-block

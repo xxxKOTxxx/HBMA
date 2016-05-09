@@ -8,7 +8,7 @@
       :php foreach($language['contacts']['phones'] as $phone):
       .contact.phone
         svg.icon
-          use(xlink:href="phone")
+          use(xlink:href="#phone")
         a.phone-link(
           title!="<? echo $phone; ?>"
           href!="<? setLink($phone, 'phone'); ?>"
@@ -17,7 +17,7 @@
       :php foreach($language['contacts']['emails'] as $email):
       .contact.email
         svg.icon
-          use(xlink:href="email")
+          use(xlink:href="#email")
         a.email-link(
           title!="<? echo $email; ?>"
           href!="<? setLink($email, 'email'); ?>"
@@ -25,7 +25,7 @@
       :php endforeach
       .contact.address
         svg.icon
-          use(xlink:href="pin")
+          use(xlink:href="#pin")
         p.address(data-language="contacts-email") <? echo $language['contacts']['address']; ?>
       .map
 

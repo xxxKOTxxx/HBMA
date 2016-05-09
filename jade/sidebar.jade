@@ -1,3 +1,11 @@
+.shadow
+  .shadow-content
+    .logo
+    .shadow-heading <? echo $language['shadow-heading']; ?>
+    .shadow-subheading <? echo $language['shadow-subheading']; ?>
+.mobile
+  .close(data-language!="common-mobile-close") <? echo $menu_item['common']['mobile']['close']; ?>
+  .menu(data-language!="common-mobile-menu") <? echo $menu_item['common']['mobile']['menu']; ?>
 aside
   nav
     ul.top-menu
@@ -30,9 +38,7 @@ aside
           title!="<? echo $menu_item['title']; ?>"
           data-language!="menu-bottom-<? echo $i; ?>"
         )
-          .heading(
-            data-language!="menu-bottom-<? echo $i; ?>-heading"
-          ) <? echo $menu_item['heading']; ?>
+          .heading(data-language!="menu-bottom-<? echo $i; ?>-heading") <? echo $menu_item['heading']; ?>
       :php $i++;
       :php endforeach
     .language-menu
@@ -49,4 +55,3 @@ aside
           ) <? echo $menu_item['heading']; ?>
         :php $i++;
         :php endforeach
-

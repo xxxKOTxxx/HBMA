@@ -11,7 +11,10 @@ body
 
 svg
   size 0
-  display none
+  display block
+  use
+    size 100%
+    display block
 
 input[type=number]
     -moz-appearance textfield
@@ -97,6 +100,7 @@ aside
   display block
   margin 0
   color menu-item-color
+  transition background-color 0.2s linear
   &.current
     border-left 2px solid input-background-hover-color
     background-color menu-item-hover-color
@@ -438,9 +442,8 @@ input[type="radio"]
   vertical-align middle
 .page-image
   size 108px
-  border-radius 50%
-  overflow hidden
-  border 1px solid rgba(0, 0, 0, 0.2)
+  display block
+  fill rgba(0, 0, 0, 0.2)
 
 .page-text
   max-width 490px
@@ -539,13 +542,14 @@ input[type="radio"]
     &:last-of-type
       margin-right 0
   
-  .image
+  .advantage-image
     size 120px
-    
+    display block
+    fill input-background-hover-color
     margin auto
-    border 1px solid input-background-hover-color
-    border-radius 50%
-    overflow hidden
+    // border 1px solid input-background-hover-color
+    // border-radius 50%
+    // overflow hidden
   h3
     margin 30px auto
     font-size 14px

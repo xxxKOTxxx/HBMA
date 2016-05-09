@@ -6,7 +6,8 @@
       .page-title(data-language="accountant-title")
         h1 <? echo $language['accountant']['title']; ?>
       .page-image-block
-        .page-image.accountant
+        svg.page-image
+          use(xlink:href="#accountant")
     p.page-text(data-language="accountant-text") <? echo $language['accountant']['text']; ?>
     .page-delimiter
     .services-block
