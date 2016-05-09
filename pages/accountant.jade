@@ -3,8 +3,8 @@
 .page.accountant
   .page-content
     .page-heading
-      .page-title(data-language="accountant-title")
-        h1 <? echo $language['accountant']['title']; ?>
+      .page-title
+        h1(data-language="accountant-title") <? echo $language['accountant']['title']; ?>
       .page-image-block
         svg.page-image
           use(xlink:href="#accountant")

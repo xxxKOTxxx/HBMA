@@ -1,3 +1,7 @@
 :php if(!isset($language)) require_once('../php/language.php'); // Detect active language
 
-h1 ERROR 404! 
+.page.page-404
+  .error-wrap
+    .error-block
+      .error-heading(data-language="404-heading") <? echo $language['404']['heading']; ?>
+      .error-text(data-language="404-text") <? echo $language['404']['text']; ?>

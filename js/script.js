@@ -1,4 +1,26 @@
 $(document).ready(function() {
+  /*** Mobile-menu ***/
+  var body = $('body');
+  var mobile = $('.mobile');
+  var mobile_menu = mobile.find('.menu');
+  var mobile_close = mobile.find('.close');
+
+  var openMenu = function() {
+    body.addClass('show');
+  };
+  var closeMenu = function() {
+    body.removeClass('show');
+  };
+
+  mobile_menu
+    .on('click', function(event) {
+      openMenu();
+    });
+  mobile_close
+    .on('click', function(event) {
+      closeMenu();
+    });
+
   /*** AJAX-reload ***/
   var shadow_fade_time = 200
   var shadow_delay_time = 500
@@ -65,7 +87,6 @@ $(document).ready(function() {
       url: 'pages'+state.page+'.php',
       success: function(data) {
         container.html(data);
-        menuItems.removeClass('current');
         $('a[href="'+state.url.replace('/', '')+'"]').parent().addClass('current');
         setSlider();
         if(state.set) {
@@ -83,6 +104,7 @@ $(document).ready(function() {
   pageLink
     .on('click', function(event) {
       event.preventDefault();
+      menuItems.removeClass('current');
       var state = getState($(event.target), true);
       if(!state) {
         return false;
@@ -155,7 +177,7 @@ $(document).ready(function() {
           $(this).prop('value', JSON.stringify(language_data.value));
           break;
         default:
-          $(this).text(language_data);
+          $(this).html(language_data);
       };
     });
   };
@@ -387,7 +409,6 @@ $(document).ready(function() {
     var type = countData.type;
     var price = getCalculatorPrice(calculator, type);
     var modificator = getCalculatorModificator(calculator);
-console.log('price',typeof price)
     if(typeof price == 'string') {
       var value = price;
       var prefix = false;

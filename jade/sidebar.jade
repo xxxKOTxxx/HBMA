@@ -4,8 +4,25 @@
     .shadow-heading <? echo $language['shadow-heading']; ?>
     .shadow-subheading <? echo $language['shadow-subheading']; ?>
 .mobile
-  .close(data-language!="common-mobile-close") <? echo $menu_item['common']['mobile']['close']; ?>
-  .menu(data-language!="common-mobile-menu") <? echo $menu_item['common']['mobile']['menu']; ?>
+  .close-block
+    .close(data-language="common-mobile-close") <? echo $language['common']['mobile']['close']; ?>
+  .menu-block
+    .menu(data-language="common-mobile-menu") <? echo $language['common']['mobile']['menu']; ?>
+    .logo-block
+      .logo-wrap
+        .menu-icon.logo
+      a.page-link(
+        href!="<? echo $language['menu']['top']['0']['url']; ?>"
+        title!="<? echo $language['menu']['top']['0']['title']; ?>"
+        data-language!="menu-top-0"
+      )
+        .heading(
+          data-language!="menu-top-0-heading"
+        ) <? echo $language['menu']['top']['0']['heading']; ?>
+        .subheading(
+          data-language!="menu-top-0-subheading"
+        ) <? echo $language['menu']['top']['0']['subheading']; ?>
+
 aside
   nav
     ul.top-menu
@@ -31,7 +48,6 @@ aside
     ul.bottom-menu
       :php $i = 0;
       :php foreach($language['menu']['bottom'] as $menu_item):
-      li.menu-item()
       li.menu-item(class!="<? set(($menu_item['url'] == $page), true, 'current'); ?>")
         a.page-link(
           href!="<? echo $menu_item['url']; ?>"

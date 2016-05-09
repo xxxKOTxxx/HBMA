@@ -42,6 +42,18 @@
         'uk' => 'International'
       )
     ),
+    'mobile' => array(
+      'close' => array(
+        'en' => 'Сlose',
+        'ru' => 'Закрыть',
+        'uk' => 'Закрити'
+      ),
+      'menu' => array(
+        'en' => 'Menu',
+        'ru' => 'Меню',
+        'uk' => 'Меню'
+      )
+    ),
     'call' => array(
       'en' => 'Contact us',
       'ru' => 'Связаться',
@@ -3483,4 +3495,13 @@
     )
   );
 
+  /*** 404 page translations ***/
+  $languages['404'] = array(
+    'heading' => '404',
+    'text' => array(
+      'en' => 'This page is not found.<br>You can select one of the menu items.',
+      'ru' => 'Такая страница не найдена.<br>Вы можете выбрать один из пунктов меню.',
+      'uk' => 'Така сторінка не знайдена.<br>Ви можете вибрати один з пунктів меню.'
+    )
+  )
 ?>
