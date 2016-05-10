@@ -483,17 +483,22 @@ input[type="radio"]
   padding 120px 0
   box-sizing border-box
   text-align center
+  &.main
+    background-color main-page-background-color
   &.accountant
-    background-color #dae3de
-    background-image: linear-gradient(-90deg, #dae3de, #cad7d0)
+    background-color accountant-start-background-color
+    background-image: linear-gradient(-90deg, accountant-start-background-color, accountant-end-background-color)
   &.legal
-    background-color #dadce3
-    background-image: linear-gradient(90deg, #dadce3, #cacdd7)
+    background-color legal-start-background-color
+    background-image: linear-gradient(-90deg, legal-start-background-color, legal-end-background-color)
   &.legalization
-  &.reviews
+    background-color legalization-start-background-color
+    background-image: linear-gradient(-90deg, legalization-start-background-color, legalization-end-background-color)
   &.translation
-    background-color #dadce3
-    background-image: linear-gradient(90deg, #dadce3, #cacdd7)
+    background-color translation-start-background-color
+    background-image: linear-gradient(-90deg, translation-start-background-color, translation-end-background-color)
+  &.reviews
+    background-color reviews-page-background-color
   &.contacts
     background-color contacts-page-background-color
   &.page-404
