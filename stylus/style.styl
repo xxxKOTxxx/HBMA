@@ -17,6 +17,15 @@ svg
     size 100%
     display block
 
+form
+  text-align justify
+  &:after
+    content ''
+    size 100% 0
+    display inline-block
+    font-size 0
+    line-height 0
+
 input[type=number]
     -moz-appearance textfield
 input[type=number]::-webkit-inner-spin-button 
@@ -36,7 +45,35 @@ input[type=number]::-webkit-outer-spin-button
 :-ms-input-placeholder
   color input-background-hover-color
   opacity 1
+
+input
+textarea
+  size 100%
+  box-sizing border-box
+  border 0 none
+  font-size 14px
+  font-family "Open Sans"
+  color input-text-dark-color
+  background-color input-background-color
+  outline none
   
+input
+  padding 0 20px
+  box-sizing border-box
+
+.input-wrap
+  size 100% 50px
+  max-width 414px
+  margin-bottom 24px
+  display inline-block
+  vertical-align top
+  *display inline
+  zoom 1
+
+textarea
+  padding 18px 20px
+  margin-bottom 24px
+
 .small-block
   width 414px
   display inline-block
@@ -62,6 +99,7 @@ input[type=number]::-webkit-outer-spin-button
 
 .call
   size 240px 60px
+  float right
   color input-text-color
   font-size 14px
   text-transform uppercase
@@ -407,99 +445,94 @@ aside
     text-align justify
     text-align-last center
 /** Calculator **/
-.calculator-item
-  size 100% 50px
-  max-width 414px
-input[type="checkbox"]
-input[type="radio"]
-  display none
-  & + label
-    box-sizing border-box
-    font-size 14px
-    line-height 18px
-    text-align left
-    color text-color
-    cursor pointer
-input[type="checkbox"]
-  & + label
-    relative false
-    display block
-    padding-top 10px
-    padding-left 47px
-    line-height 20px
-    &:before
-      content ''
-      size 35px
-      absolute 0 false false 0
-      background-color input-background-color
-    svg
-      absolute 0 false false 0
-      size 35px
-      fill transparent
-      transition fill 0.2s linear
-    span
-      display inline-block
-      line-height 17px
-      color text-semi-transparent-color
-  &:checked + label
-    svg
-      fill input-background-hover-color
-input[type="radio"]
-  & + label
+.calculator
+  .calculator-item
     size 100% 50px
-    padding 0 20px
-    display table
-    background-color #fff
-    &:hover
-      color #fff
-      background-color input-background-hover-color
-    span
-      display table-cell
-      vertical-align middle
-  &:checked + label
-    color input-background-hover-color
-    cursor default
-    &:hover
-      color #fff
-  &:disabled
+    max-width 414px
+  input[type="checkbox"]
+  input[type="radio"]
+    display none
     & + label
-      padding-left 20px !important
-      font-weight bold
-      color text-semi-transparent-color
+      box-sizing border-box
+      font-size 14px
+      line-height 18px
+      text-align left
+      color text-color
+      cursor pointer
+  input[type="checkbox"]
+    & + label
+      relative false
+      display block
+      padding-top 10px
+      padding-left 47px
+      line-height 20px
+      &:before
+        content ''
+        size 35px
+        absolute 0 false false 0
+        background-color input-background-color
+      svg
+        absolute 0 false false 0
+        size 35px
+        fill transparent
+        transition fill 0.2s linear
+      span
+        display inline-block
+        line-height 17px
+        color text-semi-transparent-color
+    &:checked + label
+      svg
+        fill input-background-hover-color
+  input[type="radio"]
+    & + label
+      size 100% 50px
+      padding 0 20px
+      display table
+      background-color #fff
+      &:hover
+        color #fff
+        background-color input-background-hover-color
+      span
+        display table-cell
+        vertical-align middle
+    &:checked + label
+      color input-background-hover-color
       cursor default
       &:hover
+        color #fff
+    &:disabled
+      & + label
+        padding-left 20px !important
+        font-weight bold
         color text-semi-transparent-color
-        background-color #fff
-      
-    & ~ label
-      padding-left 30px
+        cursor default
+        &:hover
+          color text-semi-transparent-color
+          background-color #fff
+        
+      & ~ label
+        padding-left 30px
 
-.input-wrap
-  width 100%
-  max-width 414px
-  min-height 50px
-  margin-bottom 24px
-  display block
-.translation-calculator
-  text-align justify
-  &:after
-    content ''
-    size 100% 0
+  .translation-calculator
+    text-align justify
+    &:after
+      content ''
+      size 100% 0
+      display inline-block
+      font-size 0
+      line-height 0
+  .translation-calculator-documents
+  .translation-calculator-inputs
+    width 100%
+    max-width 414px
+    vertical-align top
     display inline-block
-    font-size 0
-    line-height 0
-.translation-calculator-documents
-.translation-calculator-inputs
-  width 100%
-  max-width 414px
-  vertical-align top
-  display inline-block
-  *display inline
-  zoom 1
-.translation-calculator-documents
-  max-height 80vh
-  overflow-x hidden
-  overflow-y scroll
+    *display inline
+    zoom 1
+  .translation-calculator-documents
+    max-height 80vh
+    overflow-x hidden
+    overflow-y scroll
 
 /*** Pages ***/
 .page
@@ -580,6 +613,7 @@ input[type="radio"]
 .block-text
   text-transform uppercase
   text-align left
+  font-weight 600
 .block-title
   margin-bottom 11px
   font-size 30px
@@ -634,8 +668,6 @@ input[type="radio"]
     color text-color
     font-size 30px
     letter-spacing 8px
-  .call
-    margin-bottom 120px
 .advantages
   margin 84px 0 60px
   &:after
@@ -743,8 +775,66 @@ input[type="radio"]
     color contacts-text-color
   .block-text
     color text-color
- 
-/*** 404 ***/
+
+/*** Reviews Page  ***/
+.rate
+  size 100%
+  display table
+  background-color input-background-color
+  .title
+  .stars
+    display table-cell
+    vertical-align middle
+    padding 0 20px
+  .title
+    font-size 14px
+    color text-semi-transparent-color
+  .stars
+    input[type="radio"]
+      display none
+      +label
+        display inline-block
+        fill star-highlight-color
+        svg
+          size 24px
+          fill inherit
+      &:checked + label ~ label
+        fill star-empty-color
+    &:hover
+      input[type="radio"]:checked
+        & + label ~ label
+          fill star-hover-color
+        & + label:hover ~ label
+        & + label ~ label:hover ~ label
+          fill star-empty-color
+.review-message
+  size 100% 240px
+  resize none
+  
+/*** Contacts page ***/
+.contacts-block
+  .contact
+    size 100% 75px
+    max-width 414px
+    text-align left
+    font-size 14px
+    font-weight 600
+    color input-background-hover-color
+    a
+      color inherit
+      text-decoration none
+    p
+      display inline-block
+  svg
+    size 24px
+    margin-right 30px
+    display inline-block
+    fill input-background-hover-color
+
+  .contacts-message
+    size 100% 120px
+
+/*** Page 404 ***/
 .error-wrap
   size 100%
   display table

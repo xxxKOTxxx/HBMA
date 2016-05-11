@@ -16,7 +16,7 @@
       form.calculator.translation-calculator
         .small-block.translation-calculator-documents(data-affect="translation-calculator-language")
           :php $i = 0;
-          :php foreach($language['translation']['calculator']['documents'] as $document) {
+          :php foreach($language['translation']['calculator']['documents'] as $document):
           :php echo '<input type="radio" name="radio" id="radio-'.$i.'" class="calculator-item calculator-radio" '.$document['status'].' value="'.htmlspecialchars(json_encode($language['translation']['calculator']['prices'][$document['price']])).'" />'
           label(
             for!="radio-<? echo $i; ?>"
@@ -24,7 +24,7 @@
           )
             span <? echo $document['title']; ?>
           :php $i++
-          :php }
+          :php endforeach
         |  
         .translation-calculator-inputs
           .input-wrap
@@ -46,8 +46,8 @@
               data-units!="<?=$language['translation']['calculator']['units']?>"
             )
           .translation-calculator-modificators
-            <? $i = 0; ?>
-            <? foreach($language['translation']['calculator']['modificators'] as $modificator) { ?>
+            :php $i = 0;
+            :php foreach($language['translation']['calculator']['modificators'] as $modificator):
             .input-wrap
               input.calculator-item.calculator-modificator.calculator-checkbox(
                 id!="checkbox-<? echo $i; ?>"
@@ -63,8 +63,8 @@
                   use(xlink:href="#check")
                 | <? echo $modificator['title']; ?>
                 span <? echo $modificator['text']; ?>
-            <? $i++; ?>
-            <? }; ?>
+            :php $i++
+            :php endforeach
           .calculator-result-block
             p.result-text(data-language="translation-calculator-result") <? echo $language['translation']['calculator']['result']; ?>
               span.result-prefix

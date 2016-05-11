@@ -33,21 +33,23 @@
       h2.block-title(data-language="contacts-form-title") <? echo $language['contacts']['form']['title']; ?>
       p.block-text(data-language="contacts-form-text") <? echo $language['contacts']['form']['text']; ?>
       form
-        input(
-          type="email"
-          name="email"
-          data-language="contacts-form-email"
-          placeholder!="<? echo $language['contacts']['form']['email']; ?>"
-        )
-        input(
-          type="text"
-          name="title"
-          data-language="contacts-form-subject"
-          placeholder!="<? echo $language['contacts']['form']['subject']; ?>"
-        )
-        textarea(
+        .input-wrap
+          input(
+            type="email"
+            name="email"
+            data-language="contacts-form-email"
+            placeholder!="<? echo $language['contacts']['form']['email']; ?>"
+          )
+        .input-wrap
+          input(
+            type="text"
+            name="title"
+            data-language="contacts-form-subject"
+            placeholder!="<? echo $language['contacts']['form']['subject']; ?>"
+          )
+        textarea.contacts-message(
           name="message"
           data-language="contacts-form-message"
           placeholder!="<? echo $language['contacts']['form']['message']; ?>"
         )
-        button.send(data-language="common-send") <? echo $language['common']['send']; ?>
+        button.call(data-language="common-send") <? echo $language['common']['send']; ?>

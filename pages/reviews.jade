@@ -44,20 +44,40 @@
       h2.block-title(data-language="reviews-message-title") <? echo $language['reviews']['message']['title']; ?>
       p.block-text(data-language="reviews-message-text") <? echo $language['reviews']['message']['text']; ?>
       form.reviews-message
-
-        input(
-          type="email"
-          name="email"
-          data-language="contacts-send-email"
-          placeholder!="<? echo $language['contacts-send-email']; ?>"
-        )
-        .rate
-          .title
-          .stars
-            
-        textarea(
+        .input-wrap
+          input(
+            type="text"
+            name="name"
+            data-language="reviews-review-name"
+            placeholder!="<? echo $language['reviews']['review']['name']; ?>"
+          )
+        |  
+        .input-wrap
+          .rate
+            .title(data-language="reviews-review-rate") <? echo $language['reviews']['review']['rate']; ?>
+            .stars
+              :php for($i = 1; $i < 5; $i++):
+              input(
+                id!="rate-<? echo $i; ?>"
+                type="radio"
+                name="rate"
+              )
+              label(for!="rate-<? echo $i; ?>")
+                svg
+                  use(xlink:href="#star")
+              :php endfor
+              input(
+                id!="rate-5"
+                type="radio"
+                name="rate"
+                checked="checked"
+              )
+              label(for!="rate-5")
+                svg
+                  use(xlink:href="#star")
+        textarea.review-message(
           name="message"
-          data-language="contacts-send-message"
-          placeholder!="<? echo $language['contacts-send-message']; ?>"
+          data-language="reviews-review-message"
+          placeholder!="<? echo $language['reviews']['review']['message']; ?>"
         )
-        button.send(data-language="contacts-send") <? echo $language['contacts-send']; ?>
+        button.call(data-language="common-send") <? echo $language['common']['send']; ?>
