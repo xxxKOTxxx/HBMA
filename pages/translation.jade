@@ -58,7 +58,10 @@
               label(
                 for!="checkbox-<? echo $i; ?>"
                 data-language!="translation-calculator-modificators-<? echo $i; ?>-title"
-              ) <? echo $modificator['title']; ?>
+              )
+                svg
+                  use(xlink:href="#check")
+                | <? echo $modificator['title']; ?>
                 span <? echo $modificator['text']; ?>
             <? $i++; ?>
             <? }; ?>

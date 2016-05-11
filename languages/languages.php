@@ -30,17 +30,11 @@
   
   /*** Common translations ***/
   $languages['common'] = array(
-    'shadow' => array(
-      'heading' => array(
-        'en' => 'HBMA',
-        'ru' => 'HBMA',
-        'uk' => 'HBMA'
-      ),
-      'subheading' => array(
-        'en' => 'International',
-        'ru' => 'International',
-        'uk' => 'International'
-      )
+    'site' => array(
+      'heading' => 'HBMA',
+      'subheading' => 'International',
+      'title' => 'HBMA International',
+      'url' => '.'
     ),
     'mobile' => array(
       'close' => array(

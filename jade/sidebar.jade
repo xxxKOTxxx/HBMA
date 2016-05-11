@@ -1,8 +1,8 @@
 .shadow
   .shadow-content
     .logo
-    .shadow-heading <? echo $language['shadow-heading']; ?>
-    .shadow-subheading <? echo $language['shadow-subheading']; ?>
+    .shadow-heading(data-language="common-site-heading") <? echo $language['common']['site']['heading']; ?>
+    .shadow-subheading(data-language="common-site-subheading") <? echo $language['common']['site']['subheading']; ?>
 .mobile
   .close-block
     .close(data-language="common-mobile-close") <? echo $language['common']['mobile']['close']; ?>
@@ -12,16 +12,12 @@
       .logo-wrap
         .menu-icon.logo
       a.page-link(
-        href!="<? echo $language['menu']['top']['0']['url']; ?>"
-        title!="<? echo $language['menu']['top']['0']['title']; ?>"
-        data-language!="menu-top-0"
+        href!="<? echo $language['common']['site']['url']; ?>"
+        title!="<? echo $language['common']['site']['title']; ?>"
+        data-language!="common-site-title"
       )
-        .heading(
-          data-language!="menu-top-0-heading"
-        ) <? echo $language['menu']['top']['0']['heading']; ?>
-        .subheading(
-          data-language!="menu-top-0-subheading"
-        ) <? echo $language['menu']['top']['0']['subheading']; ?>
+        .heading(data-language="common-site-heading") <? echo $language['common']['site']['heading']; ?>
+        .subheading(data-language="common-site-subheading") <? echo $language['common']['site']['subheading']; ?>
 
 aside
   nav

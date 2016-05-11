@@ -415,9 +415,16 @@ $(document).ready(function() {
       var units = false;
     }
     else {
-      var value = parseInt(price * count * modificator);
-      var prefix = getCalculatorPrefix(calculator);
-      var units = getCalculatorUnits(calculator);
+      if(!count) {
+        var value = false;
+        var prefix = false;
+        var units = false;
+      }
+      else {
+        var value = parseInt(price * count * modificator);
+        var prefix = getCalculatorPrefix(calculator);
+        var units = getCalculatorUnits(calculator);
+      };
     };
     var data = {
       "prefix": prefix,
