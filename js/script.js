@@ -41,12 +41,14 @@ $(document).ready(function() {
     else {
       if(switcher) {
         shadow.css({'display': 'block'}).fadeTo(shadow_fade_time, 1, function() {
+          window.scrollTo(0,0);
           setPage(state);
         });
       }
       else {
         shadow.fadeTo(shadow_fade_time, 0, function() {
-          shadow.css({'display': 'none'})
+          shadow.css({'display': 'none'});
+          closeMenu();
         });
       }
       shadow_block_timestamp = current_time + shadow_delay_time
@@ -87,7 +89,7 @@ $(document).ready(function() {
       url: 'pages'+state.page+'.php',
       success: function(data) {
         container.html(data);
-        $('a[href="'+state.url.replace('/', '')+'"]').parent().addClass('current');
+        $('a[href="'+state.url.split('/').pop()+'"]').parent().addClass('current');
         setSlider();
         if(state.set) {
           if(history && history.pushState) {
@@ -195,6 +197,7 @@ $(document).ready(function() {
         setLanguage(json);
         languageLink.removeClass('current');
         target.addClass('current');
+        closeMenu();
       }
     });
   };

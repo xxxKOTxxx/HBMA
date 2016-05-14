@@ -6,7 +6,9 @@
   .slide
     img.background(
       src!="<? echo $slide['background']; ?>"
-      alt
+      width="1060"
+      height="600"
+      alt=""
     )
     .content(class!="slide-<? echo $i; ?>")
       .heading(
@@ -36,9 +38,10 @@
     .page-delimiter
     .advantages-block
       h2.advantages-title(data-language="main-advantages_title") <? echo $language['main']['advantages']['title']; ?>
-      .advantages
+      .advantages.page-block-wrap
         :php $i = 0;
         :php foreach($language['main']['advantages']['data'] as $advantage):
+        :php if($i % 2 == 0) { if($i != 0) {echo '</div> ';} echo '<div class="advantage-block page-block">';}
         .advantage
           svg.advantage-image
             use(xlink:href!="#<? echo $advantage['class']; ?>")
@@ -51,4 +54,4 @@
         |  
         :php $i++;
         :php endforeach
-      button.call(data-language="common-call") <? echo $language['common']['call']; ?>
+    button.call.center(data-language="common-call") <? echo $language['common']['call']; ?>

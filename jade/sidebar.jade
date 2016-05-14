@@ -11,7 +11,7 @@
     .logo-block
       .logo-wrap
         .menu-icon.logo
-      a.page-link(
+      a.page-link.mobile-link(
         href!="<? echo $language['common']['site']['url']; ?>"
         title!="<? echo $language['common']['site']['title']; ?>"
         data-language!="common-site-title"
@@ -28,7 +28,7 @@ aside
         :php if($menu_item["icon"]):
         .menu-icon(class!="<? set($menu_item['icon'], true); ?>")
         :php endif
-        a.page-link(
+        a.page-link.mobile-link(
           href!="<? echo $menu_item['url']; ?>"
           title!="<? echo $menu_item['title']; ?>"
           data-language!="menu-top-<? echo $i; ?>"
@@ -45,7 +45,7 @@ aside
       :php $i = 0;
       :php foreach($language['menu']['bottom'] as $menu_item):
       li.menu-item(class!="<? set(($menu_item['url'] == $page), true, 'current'); ?>")
-        a.page-link(
+        a.page-link.mobile-link(
           href!="<? echo $menu_item['url']; ?>"
           title!="<? echo $menu_item['title']; ?>"
           data-language!="menu-bottom-<? echo $i; ?>"
@@ -58,7 +58,7 @@ aside
         :php $i = 0;
         :php foreach($language['menu']['languages'] as $menu_item):
         li.menu-item
-          a.language(
+          a.language.mobile-link(
             class!="<? set(($menu_item['id'] == $_SESSION['language']), true, 'current'); ?>"
             href!=".?language=<? echo $menu_item['id']; ?>"
             title!="<? echo $menu_item['title']; ?>"

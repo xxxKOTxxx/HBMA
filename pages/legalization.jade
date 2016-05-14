@@ -17,7 +17,7 @@
         :php $i = 0;
         :php foreach($language['legalization']['services']['data'] as $service):
         li.list-item.service
-          h3.list-item-text(data-language!="legalization-services-<? echo $i; ?>") <? echo $service; ?>
+          h3.list-item-text(data-language!="legalization-services-data-<? echo $i; ?>") <? echo $service; ?>
         |  
         :php $i++;
         :php endforeach
@@ -32,7 +32,7 @@
             :php $i = 0;
             :php foreach($language['legalization']['calculator']['data'] as $type):
             option(
-              data-language="legalization-calculator-data-<? echo $i; ?>"
+              data-language!="legalization-calculator-data-<? echo $i; ?>"
               value!='<?=htmlspecialchars(json_encode($type[value])); ?>'
             ) <? echo $type['title']; ?>
             :php $i++;

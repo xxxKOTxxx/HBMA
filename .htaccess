@@ -4,3 +4,5 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 RewriteRule ^ index.php [L]
+
+AddType 'text/html; charset=UTF-8' html
