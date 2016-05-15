@@ -100,6 +100,7 @@ textarea
   text-transform uppercase
   text-decoration none
   background-color input-background-hover-color
+  transition background-color 0.2s linear
   letter-spacing 7px
   cursor pointer
   &:hover
@@ -326,24 +327,12 @@ textarea
 
   .translation-calculator
     text-align justify
-    &:after
-      content ''
-      size 100% 0
-      display inline-block
-      font-size 0
-      line-height 0
   .translation-calculator-documents
-  .translation-calculator-inputs
-    width 100%
-    max-width column-width
-    vertical-align top
-    display inline-block
-    *display inline
-    zoom 1
-  .translation-calculator-documents
-    max-height 80vh
+    max-height 60vh
     overflow-x hidden
     overflow-y scroll
+    +media-query(all, min-width content-breakpoint)
+      max-height 528px
     
 .calculator-result-block
   size 100% 60px

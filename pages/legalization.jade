@@ -10,48 +10,54 @@
           use(xlink:href="#legalization")
     p.page-text(data-language="legalization-text") <? echo $language['legalization']['text']; ?>
     .page-delimiter
-    .services-block
-      h2.block-title(data-language="legalization-services-title") <? echo $language['legalization']['services']['title']; ?>
-      p.block-text(data-language="legalization-services-text") <? echo $language['legalization']['services']['text']; ?>
-      ul.block-list.services
-        :php $i = 0;
-        :php foreach($language['legalization']['services']['data'] as $service):
-        li.list-item.service
-          h3.list-item-text(data-language!="legalization-services-data-<? echo $i; ?>") <? echo $service; ?>
-        |  
-        :php $i++;
-        :php endforeach
-    .calculator-block
-      h2.block-title(data-language="legalization-calculator-title") <? echo $language['legalization']['calculator']['title']; ?>
-      p.block-text(data-language="legalization-calculator-text") <? echo $language['legalization']['calculator']['text']; ?>
-      form.calculator.legalization-calculator
-        .input-wrap
-          select.calculator-item.calculator-select.legalization-calculator-production(
-            data-affect="legalization-calculator-urgency"
-          )
-            :php $i = 0;
-            :php foreach($language['legalization']['calculator']['data'] as $type):
-            option(
-              data-language!="legalization-calculator-data-<? echo $i; ?>"
-              value!='<?=htmlspecialchars(json_encode($type[value])); ?>'
-            ) <? echo $type['title']; ?>
-            :php $i++;
-            :php endforeach
-        |  
-        .input-wrap
-          select.calculator-item.calculator-select.legalization-calculator-urgency
-            :php foreach($language['legalization']['calculator']['data']['0']['value'] as $urgency):
-            option(
-              value=''
-              data-price!="<?=$urgency['price']; ?>"
-              data-prefix!="<?=$urgency['prefix']; ?>"
-              data-units!="<?=$urgency['units']; ?>"
-            ) <? echo $urgency['title']; ?>
-            :php endforeach
-        .calculator-result-block
-          p.result-text(data-language="legalization-calculator-result") <? echo $language['legalization']['calculator']['result']; ?>:
-            span.result-prefix
-            span.result-value
-            span.result-units
-      button.call(data-language="common-call") <? echo $language['common']['call']; ?>
+    .page-block-wrap
+      .services-block.page-block
+        h2.block-title(data-language="legalization-services-title") <? echo $language['legalization']['services']['title']; ?>
+        p.block-text(data-language="legalization-services-text") <? echo $language['legalization']['services']['text']; ?>
+        ul.block-list.services
+          :php $i = 0;
+          :php foreach($language['legalization']['services']['data'] as $service):
+          li.list-item.service
+            h3.list-item-text(data-language!="legalization-services-data-<? echo $i; ?>") <? echo $service; ?>
+          :php $i++;
+          :php endforeach
+      |  
+      .calculator-block.page-block
+        h2.block-title(data-language="legalization-calculator-title") <? echo $language['legalization']['calculator']['title']; ?>
+        p.block-text(data-language="legalization-calculator-text") <? echo $language['legalization']['calculator']['text']; ?>
+        form.calculator.legalization-calculator
+          .input-wrap
+            select.calculator-item.calculator-select.legalization-calculator-production(
+              data-affect="legalization-calculator-urgency"
+            )
+              :php $i = 0;
+              :php foreach($language['legalization']['calculator']['data'] as $type):
+              option(
+                data-language!="legalization-calculator-data-<? echo $i; ?>"
+                value!='<?=htmlspecialchars(json_encode($type[value])); ?>'
+              ) <? echo $type['title']; ?>
+              :php $i++;
+              :php endforeach
+          |  
+          .input-wrap
+            select.calculator-item.calculator-select.legalization-calculator-urgency
+              :php foreach($language['legalization']['calculator']['data']['0']['value'] as $urgency):
+              option(
+                value=''
+                data-price!="<?=$urgency['price']; ?>"
+                data-prefix!="<?=$urgency['prefix']; ?>"
+                data-units!="<?=$urgency['units']; ?>"
+              ) <? echo $urgency['title']; ?>
+              :php endforeach
+          .calculator-result-block
+            p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant']['calculator']['result']; ?>
+            p.result-prefix
+            p.result-value
+            p.result-units
+        a.page-link.call.right(
+          href!="<? echo $language['common']['contacts_url']; ?>"
+          title!="<? echo $language['common']['order']; ?>"
+          data-language="common-order"
+        )
+          span(data-language="common-order") <? echo $language['common']['order']; ?>
 

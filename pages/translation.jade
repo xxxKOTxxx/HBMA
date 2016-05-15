@@ -13,8 +13,8 @@
     .calculator-block
       h2.block-title(data-language="translation-calculator-title") <? echo $language['translation']['calculator']['title']; ?>
       p.block-text(data-language="translation-calculator-text") <? echo $language['translation']['calculator']['text']; ?>
-      form.calculator.translation-calculator
-        .small-block.translation-calculator-documents(data-affect="translation-calculator-language")
+      form.calculator.translation-calculator.page-block-wrap
+        .page-block.translation-calculator-documents(data-affect="translation-calculator-language")
           :php $i = 0;
           :php foreach($language['translation']['calculator']['documents'] as $document):
           :php echo '<input type="radio" name="radio" id="radio-'.$i.'" class="calculator-item calculator-radio" '.$document['status'].' value="'.htmlspecialchars(json_encode($language['translation']['calculator']['prices'][$document['price']])).'" />'
@@ -26,7 +26,7 @@
           :php $i++
           :php endforeach
         |  
-        .translation-calculator-inputs
+        .translation-calculator-inputs.page-block
           .input-wrap
             select.calculator-item.calculator-select.translation-calculator-language
               <? foreach($language['translation']['calculator']['prices']['text'] as $price) { ?>
@@ -66,8 +66,13 @@
             :php $i++
             :php endforeach
           .calculator-result-block
-            p.result-text(data-language="translation-calculator-result") <? echo $language['translation']['calculator']['result']; ?>
-              span.result-prefix
-              span.result-value
-              span.result-units
-      button.call(data-language="common-call") <? echo $language['common']['call']; ?>
+            p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant']['calculator']['result']; ?>
+            p.result-prefix
+            p.result-value
+            p.result-units
+          a.page-link.call.right(
+            href!="<? echo $language['common']['contacts_url']; ?>"
+            title!="<? echo $language['common']['order']; ?>"
+            data-language="common-order"
+          )
+            span(data-language="common-order") <? echo $language['common']['order']; ?>
