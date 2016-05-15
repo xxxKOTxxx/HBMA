@@ -10,48 +10,54 @@
           use(xlink:href="#accountant")
     p.page-text(data-language="accountant-text") <? echo $language['accountant']['text']; ?>
     .page-delimiter
-    .services-block
-      h2.block-title(data-language="accountant-services-title") <? echo $language['accountant']['services']['title']; ?>
-      p.block-text(data-language="accountant-services-text") <? echo $language['accountant']['services']['text']; ?>
-      ul.block-list.services
-        :php $i = 0;
-        :php foreach($language['accountant']['services']['data'] as $service):
-        li.list-item.service
-          h3.list-item-text(
-              data-language!="accountant-services-data-<? echo $i; ?>"
-            ) <? echo $service; ?>
-        |  
-        :php $i++;
-        :php endforeach
-    .calculator-block
-      h2.block-title(data-language="accountant-calculator-title") <? echo $language['accountant']['calculator']['title']; ?>
-      p.block-text(data-language="accountant-calculator-text") <? echo $language['accountant']['calculator']['text']; ?>
-      form.calculator.accountant-calculator
-        .input-wrap
-          select.calculator-item.calculator-select.accountant-calculator-activity(
-            data-affect="accountant-calculator-operations"
+    .page-block-wrap
+      .services-block.page-block
+        h2.block-title(data-language="accountant-services-title") <? echo $language['accountant']['services']['title']; ?>
+        p.block-text(data-language="accountant-services-text") <? echo $language['accountant']['services']['text']; ?>
+        ul.block-list.services
+          :php $i = 0;
+          :php foreach($language['accountant']['services']['data'] as $service):
+          li.list-item.service
+            h3.list-item-text(
+                data-language!="accountant-services-data-<? echo $i; ?>"
+              ) <? echo $service; ?>
+          :php $i++;
+          :php endforeach
+      |  
+      .calculator-block.page-block
+        h2.block-title(data-language="accountant-calculator-title") <? echo $language['accountant']['calculator']['title']; ?>
+        p.block-text(data-language="accountant-calculator-text") <? echo $language['accountant']['calculator']['text']; ?>
+        form.calculator.accountant-calculator
+          .input-wrap
+            select.calculator-item.calculator-select.accountant-calculator-activity(
+              data-affect="accountant-calculator-operations"
+            )
+              :php $i = 0;
+              :php foreach($language['accountant']['calculator']['data'] as $activity):
+              option(
+                data-language!="accountant-calculator-data-<? echo $i; ?>-title"
+                value!="<?=htmlspecialchars(json_encode($activity['value'])); ?>"
+              ) <? echo $activity['title']; ?>
+              :php $i++;
+              :php endforeach
+          .input-wrap
+            select.calculator-item.calculator-select.accountant-calculator-operations
+              :php foreach($language['accountant']['calculator']['data']['0']['value'] as $operations):
+              option(
+                value=''
+                data-price!="<? echo $operations['price']; ?>"
+                data-prefix!="<? echo $operations['prefix']; ?>"
+                data-units!="<? echo $operations['units']; ?>"
+              ) <? echo $operations['title']; ?>
+              :php endforeach
+          .calculator-result-block
+            p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant']['calculator']['result']; ?>
+            p.result-prefix
+            p.result-value
+            p.result-units
+          a.page-link.call.right(
+            href!="<? echo $language['common']['contacts_url']; ?>"
+            title!="<? echo $language['common']['order']; ?>"
+            data-language="common-order"
           )
-            :php $i = 0;
-            :php foreach($language['accountant']['calculator']['data'] as $activity):
-            option(
-              data-language!="accountant-calculator-data-<? echo $i; ?>-title"
-              value!="<?=htmlspecialchars(json_encode($activity['value'])); ?>"
-            ) <? echo $activity['title']; ?>
-            :php $i++;
-            :php endforeach
-        .input-wrap
-          select.calculator-item.calculator-select.accountant-calculator-operations
-            :php foreach($language['accountant']['calculator']['data']['0']['value'] as $operations):
-            option(
-              value=''
-              data-price!="<? echo $operations['price']; ?>"
-              data-prefix!="<? echo $operations['prefix']; ?>"
-              data-units!="<? echo $operations['units']; ?>"
-            ) <? echo $operations['title']; ?>
-            :php endforeach
-        .calculator-result-block
-          p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant']['calculator']['result']; ?>
-            span.result-prefix
-            span.result-value
-            span.result-units
-
+            span(data-language="common-order") <? echo $language['common']['order']; ?>

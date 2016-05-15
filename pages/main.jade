@@ -18,7 +18,12 @@
         data-language!="main-slider-<? echo $i; ?>-subheading"
       ) <? echo $slide['subheading']; ?>
       hr
-      button.call Связаться
+      a.page-link.call.center(
+        href!="<? echo $language['common']['contacts_url']; ?>"
+        title!="<? echo $language['common']['call']; ?>"
+        data-language="common-call"
+      )
+        span(data-language="common-call") <? echo $language['common']['call']; ?>
   :php $i++;
   :php endforeach
 .slider-pager
@@ -54,4 +59,9 @@
         |  
         :php $i++;
         :php endforeach
-    button.call.center(data-language="common-call") <? echo $language['common']['call']; ?>
+    a.page-link.call.center(
+      href!="<? echo $language['common']['contacts_url']; ?>"
+      title!="<? echo $language['common']['call']; ?>"
+      data-language="common-call"
+    )
+      span(data-language="common-call") <? echo $language['common']['call']; ?>

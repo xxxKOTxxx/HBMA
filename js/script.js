@@ -24,7 +24,6 @@ $(document).ready(function() {
   /*** AJAX-reload ***/
   var shadow_fade_time = 200
   var shadow_delay_time = 500
-  var pageLink = $('a.page-link');
   var menuItems = $('.menu-item');
   var container = $('.container');
   var shadow = $('.shadow');
@@ -103,8 +102,8 @@ $(document).ready(function() {
     });
   };
 
-  pageLink
-    .on('click', function(event) {
+  $(document)
+    .on('click', 'a.page-link', function(event) {
       event.preventDefault();
       menuItems.removeClass('current');
       var state = getState($(event.target), true);
@@ -265,7 +264,12 @@ $(document).ready(function() {
   var calculator_fade_time = 200;
 
   var prettify = function() {
-    $('form.calculator').mfs();
+    $('form.calculator').mfs(
+      {
+        'enableScroll' : true,
+        'maxHeight'    : 200
+      }
+    );
 
     var number_inputs = $("input[type=number]");
     if(number_inputs.length) {

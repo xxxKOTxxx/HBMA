@@ -13,7 +13,7 @@
     .services-block
       h2.block-title(data-language="legal-services-title") <? echo $language['legal']['services']['title']; ?>
       p.block-text(data-language="legal-services-text") <? echo $language['legal']['services']['text']; ?>
-      ul.block-list.services
+      ul.page-list.services
         :php $i = 0;
         :php foreach($language['legal']['services']['data'] as $service):
         li.list-item.service
@@ -26,32 +26,39 @@
     .prices-block
       h2.block-title(data-language="legal-prices-title") <? echo $language['legal']['prices']['title']; ?>
       p.block-text(data-language="legal-prices-text") <? echo $language['legal']['prices']['text']; ?>
-      .prices-wrap
-        :php $i = 0;
-        :php foreach($language['legal']['prices']['data'] as $price):
-        |  
-        .small-block.price-block
-          h3.price-title(
-            data-language=!"legal-prices-data-<? echo $i; ?>-title"
-            ) <? echo $price['title']; ?>
-          table.prices
-            :php $ii = 0;
-            :php foreach($price['price'] as $price_item):
-            tr(class!="<? set($price_item['class'], true); ?>")
-              td.name(
-                data-language!="legal-prices-data-<? echo $i; ?>-price-<? echo $ii; ?>-title"
-              ) <? echo $price_item['title']; ?>
-              td.prefix(
-                data-language!="<? set($price_item['prefix'], true, 'legal-prices-data-'.$i.'-price-'.$ii.'-prefix'); ?>"
-              ) <? set($price_item['prefix'], true); ?>
-              td.price <? echo $price_item['price']; ?>
-              td.units(
-                data-language!="legal-prices-units"
-              ) <? echo $language['legal']['prices']['units']; ?>
-            :php $ii++;
-            :php endforeach
-        :php $i++;
-        :php endforeach
-        .small-block
-          p.call-text(data-language="legal-call_text") <? echo $language['legal']['call_text']; ?>
-          button.call(data-language="common-call") <? echo $language['common']['call']; ?>
+      .prices-wrap.page-block-wrap
+        .page-block
+          :php $i = 0;
+          :php foreach($language['legal']['prices']['data'] as $price):
+          :php if($i == 3) {echo '</div> <div class="page-block">';}
+          .price-block
+            h3.price-title(
+              data-language=!"legal-prices-data-<? echo $i; ?>-title"
+              ) <? echo $price['title']; ?>
+            table.prices
+              :php $ii = 0;
+              :php foreach($price['price'] as $price_item):
+              tr(class!="<? set($price_item['class'], true); ?>")
+                td.name(
+                  data-language!="legal-prices-data-<? echo $i; ?>-price-<? echo $ii; ?>-title"
+                ) <? echo $price_item['title']; ?>
+                td.prefix(
+                  data-language!="<? set($price_item['prefix'], true, 'legal-prices-data-'.$i.'-price-'.$ii.'-prefix'); ?>"
+                ) <? set($price_item['prefix'], true); ?>
+                td.price <? echo $price_item['price']; ?>
+                td.units(
+                  data-language!="legal-prices-units"
+                ) <? echo $language['legal']['prices']['units']; ?>
+              :php $ii++;
+              :php endforeach
+          |  
+          :php $i++;
+          :php endforeach
+          .page-block.call-block
+            p.call-text(data-language="legal-call_text") <? echo $language['legal']['call_text']; ?>
+            a.page-link.call(
+              href!="<? echo $language['common']['contacts_url']; ?>"
+              title!="<? echo $language['common']['call']; ?>"
+              data-language="common-call"
+            )
+              span(data-language="common-call") <? echo $language['common']['call']; ?>
