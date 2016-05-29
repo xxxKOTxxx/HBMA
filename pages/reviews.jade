@@ -43,7 +43,7 @@
     .message-block
       h2.block-title(data-language="reviews-review-title") <? echo $language['reviews']['review']['title']; ?>
       p.block-text(data-language="reviews-review-text") <? echo $language['reviews']['review']['text']; ?>
-      form.reviews-message
+      form.reviews-message.adaptive.mail-form(action='/php/mailer.php' type="post" name="reviews")
         .input-wrap
           input(
             type="text"
@@ -80,4 +80,7 @@
           data-language="reviews-review-message"
           placeholder!="<? echo $language['reviews']['review']['message']; ?>"
         )
-        button.call(data-language="common-send") <? echo $language['common']['send']; ?>
+        button.call.right(
+          type="submit"
+          data-language="common-send"
+        ) <? echo $language['common']['send']; ?>

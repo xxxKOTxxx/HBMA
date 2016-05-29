@@ -5,9 +5,15 @@
     .shadow-subheading(data-language="common-site-subheading") <? echo $language['common']['site']['subheading']; ?>
 .mobile
   .close-block
-    .close(data-language="common-mobile-close") <? echo $language['common']['mobile']['close']; ?>
+    .close(data-language="common-mobile-close")
+      svg
+        use(xlink:href="#close")
+      p <? echo $language['common']['mobile']['close']; ?>
   .menu-block
-    .menu(data-language="common-mobile-menu") <? echo $language['common']['mobile']['menu']; ?>
+    .menu(data-language="common-mobile-menu")
+      svg
+        use(xlink:href="#menu")
+      p <? echo $language['common']['mobile']['menu']; ?>
     .logo-block
       .logo-wrap
         .menu-icon.logo
@@ -20,7 +26,7 @@
         .subheading(data-language="common-site-subheading") <? echo $language['common']['site']['subheading']; ?>
 
 aside
-  nav
+  nav.menu-wrap
     ul.top-menu
       :php $i = 0;
       :php foreach($language['menu']['top'] as $menu_item):

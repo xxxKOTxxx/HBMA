@@ -48,6 +48,7 @@ textarea
   color input-text-dark-color
   background-color input-background-color
   outline none
+  letter-spacing .7px
   
 input
   padding 0 20px
@@ -99,6 +100,8 @@ textarea
   text-align center
   text-transform uppercase
   text-decoration none
+  border 0 none
+  border-radius 0
   background-color input-background-hover-color
   transition background-color 0.2s linear
   letter-spacing 7px
@@ -235,6 +238,7 @@ textarea
     vertical-align middle
   .review-author
     font-size 24px
+    letter-spacing 1.2px
     text-align left
   .review-rate
     text-align right
@@ -252,6 +256,7 @@ textarea
 
   .review-text
     font-size 14px
+    letter-spacing .7px
     line-height 25px
     text-align justify
     text-align-last center
@@ -375,6 +380,7 @@ textarea
   z-index 101
   display table
   color menu-item-color
+  fill menu-item-color
   background-color text-color
   transition top 0.2s linear,
              left 0.2s linear
@@ -388,6 +394,15 @@ textarea
   .menu-block
     display block
     line-height 65px
+    p
+    svg
+      display inline-block
+      vertical-align middle
+      line-height 0
+    svg
+      size 14px
+      margin 0 14px
+      fill inherit
   .close-block
     width sidebar-width
     absolute 0 false 0 0
@@ -452,10 +467,20 @@ aside
     .show &
       left 0
       
-  nav
-    size 100%
-    display table
-    background-color text-color
+.menu-wrap
+  size 100%
+  display table
+  background-color text-color
+  relative false
+  
+  .menu-runner
+    absolute false false false 0
+    z-index 1
+    width 2px
+    background-color input-background-hover-color
+    &.animated
+      transition top 0.2s ease,
+                 height 0.2s linear
     
 .top-menu
 .bottom-menu
@@ -477,6 +502,9 @@ aside
   &.current
     border-left 2px solid input-background-hover-color
     background-color menu-item-hover-color
+    transition background-color 0.2s linear 0.2s
+    .js &
+      border-left 0 none
   &.icon
     relative false
     padding 50px 0 48px 62px
@@ -726,6 +754,12 @@ aside
   line-height 14px
   letter-spacing 2.8px
   color rgba(25, 27, 28, 0.5)
+
+.adaptive
+  width column-width
+  margin auto
+  +media-query(all, min-width content-breakpoint)
+    width 100%
     
 /*** Main ***/
 .main-title
@@ -877,6 +911,15 @@ aside
   
 /*** Contacts page ***/
 .contacts-block
+  relative false
+  &:after
+    content ''
+    display none
+    size 1px 100%
+    absolute 0 (-1 * page-spacing) 0 false
+    background-color input-background-hover-color
+    +media-query(all, min-width content-breakpoint)
+      display block
   .contact
     size 100% 75px
     max-width column-width
@@ -894,6 +937,10 @@ aside
     margin-right page-spacing
     display inline-block
     fill input-background-hover-color
+
+  .map
+    +media-query(all, max-width content-breakpoint)
+      margin-bottom page-spacing * 3
 
   .contacts-message
     size 100% 120px

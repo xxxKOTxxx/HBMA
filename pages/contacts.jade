@@ -2,54 +2,71 @@
 
 .page.contacts
   .page-content
-    .small-block.contacts-block
-      h2.block-title(data-language="contacts-title") <? echo $language['contacts']['title']; ?>
-      p.block-text(data-language="contacts-text") <? echo $language['contacts']['text']; ?>
-      :php foreach($language['contacts']['phones'] as $phone):
-      .contact.phone
-        svg.icon
-          use(xlink:href="#phone")
-        a.phone-link(
-          title!="<? echo $phone; ?>"
-          href!="<? setLink($phone, 'phone'); ?>"
-        ) <? echo $phone; ?>
-      :php endforeach
-      :php foreach($language['contacts']['emails'] as $email):
-      .contact.email
-        svg.icon
-          use(xlink:href="#email")
-        a.email-link(
-          title!="<? echo $email; ?>"
-          href!="<? setLink($email, 'email'); ?>"
-        ) <? echo $email; ?>
-      :php endforeach
-      .contact.address
-        svg.icon
-          use(xlink:href="#pin")
-        p.address(data-language="contacts-address") <? echo $language['contacts']['address']; ?>
-      .map
+    .page-block-wrap
+      .page-block.contacts-block
+        h2.block-title(data-language="contacts-title") <? echo $language['contacts']['title']; ?>
+        p.block-text(data-language="contacts-text") <? echo $language['contacts']['text']; ?>
+        :php $i = 0;
+        :php foreach($language['contacts']['phones'] as $phone):
+        .contact.phone
+          svg.icon
+            use(xlink:href="#phone")
+          a.phone-link(
+            data-language="contacts-phones-<? echo $i; ?>"
+            title!="<? echo $phone; ?>"
+            href!="<? setLink($phone, 'phone'); ?>"
+          ) <? echo $phone; ?>
+        :php $i++;
+        :php endforeach
+        :php $i = 0;
+        :php foreach($language['contacts']['emails'] as $email):
+        .contact.email
+          svg.icon
+            use(xlink:href="#email")
+          a.email-link(
+            data-language="contacts-emails-<? echo $i; ?>"
+            title!="<? echo $email; ?>"
+            href!="<? setLink($email, 'email'); ?>"
+          ) <? echo $email; ?>
+        :php $i++;
+        :php endforeach
+        .contact.address
+          svg.icon
+            use(xlink:href="#pin")
+          p.address(data-language="contacts-address") <? echo $language['contacts']['address']; ?>
+        .map
+          a(
+            href="https://www.google.com.ua/maps/place/%D0%B2%D1%83%D0%BB.+%D0%97%D0%B4%D0%BE%D0%BB%D0%B1%D1%83%D0%BD%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0,+3%D0%90,+4,+%D0%9A%D0%B8%D1%97%D0%B2/@50.4128114,30.6124503,17z"
+            target="_blank"
+            data-language="contacts-address"
+            title!="<? echo $language['contacts']['address']; ?>")
+            img(src="./images/map.png" width="414" height="130" alt!="<? echo $language['contacts']['address']; ?>" data-language="contacts-address")
 
-    .small-block.send-block
-      h2.block-title(data-language="contacts-form-title") <? echo $language['contacts']['form']['title']; ?>
-      p.block-text(data-language="contacts-form-text") <? echo $language['contacts']['form']['text']; ?>
-      form
-        .input-wrap
-          input(
-            type="email"
-            name="email"
-            data-language="contacts-form-email"
-            placeholder!="<? echo $language['contacts']['form']['email']; ?>"
+      |  
+      .page-block.send-block
+        h2.block-title(data-language="contacts-form-title") <? echo $language['contacts']['form']['title']; ?>
+        p.block-text(data-language="contacts-form-text") <? echo $language['contacts']['form']['text']; ?>
+        form.mail-form(action='/php/mailer.php' type="post" name="contacts")
+          .input-wrap
+            input(
+              type="email"
+              name="email"
+              data-language="contacts-form-email"
+              placeholder!="<? echo $language['contacts']['form']['email']; ?>"
+            )
+          .input-wrap
+            input(
+              type="text"
+              name="title"
+              data-language="contacts-form-subject"
+              placeholder!="<? echo $language['contacts']['form']['subject']; ?>"
+            )
+          textarea.contacts-message(
+            name="message"
+            data-language="contacts-form-message"
+            placeholder!="<? echo $language['contacts']['form']['message']; ?>"
           )
-        .input-wrap
-          input(
-            type="text"
-            name="title"
-            data-language="contacts-form-subject"
-            placeholder!="<? echo $language['contacts']['form']['subject']; ?>"
-          )
-        textarea.contacts-message(
-          name="message"
-          data-language="contacts-form-message"
-          placeholder!="<? echo $language['contacts']['form']['message']; ?>"
-        )
-        button.call(data-language="common-send") <? echo $language['common']['send']; ?>
+          button.call.right(
+            type="submit"
+            data-language="common-send"
+          ) <? echo $language['common']['send']; ?>

@@ -21,6 +21,28 @@ $(document).ready(function() {
       closeMenu();
     });
 
+  /*** Menu runner ***/
+  var menu = $('.menu-wrap');
+  var runner = $('<div class="menu-runner" />')
+
+  var setRunner = function() {
+    var current_menu_item = menu.find('.menu-item.current');
+    if(current_menu_item.length) {
+      var height = current_menu_item.outerHeight();
+      var top = current_menu_item.offset().top;
+      runner.css({
+        'top': top,
+        'height': height
+      });
+      if(!runner.hasClass('animated')) {
+        runner.addClass('animated');
+      };
+    };
+  };
+
+  menu.append(runner).addClass('js');
+  setRunner();
+
   /*** AJAX-reload ***/
   var shadow_fade_time = 200
   var shadow_delay_time = 500
@@ -88,7 +110,9 @@ $(document).ready(function() {
       url: 'pages'+state.page+'.php',
       success: function(data) {
         container.html(data);
-        $('a[href="'+state.url.split('/').pop()+'"]').parent().addClass('current');
+        var href = state.url.split('/').pop() || '.';
+        $('a[href="'+href+'"]').parent().addClass('current');
+        setRunner();
         setSlider();
         if(state.set) {
           if(history && history.pushState) {
@@ -194,6 +218,7 @@ $(document).ready(function() {
         expires = new Date($.now()+31556926000).toGMTString();
         document.cookie = 'language='+language+';expires='+expires+';path=/';
         setLanguage(json);
+        setRunner();
         languageLink.removeClass('current');
         target.addClass('current');
         closeMenu();
