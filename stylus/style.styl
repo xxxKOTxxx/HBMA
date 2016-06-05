@@ -59,13 +59,16 @@ textarea
   margin-bottom 24px
 
 .input-wrap
-  size 100% 50px
+  width 100%
   max-width column-width
+  min-height 50px
   margin-bottom 24px
   display inline-block
   vertical-align top
   *display inline
   zoom 1
+  input
+    min-height 50px
 
 .logo
   size 18px
@@ -296,7 +299,14 @@ textarea
       span
         display inline-block
         line-height 17px
-        color text-semi-transparent-color
+        font-size 14px
+        letter-spacing 0.7px
+        &.title
+          color text-color
+        &.text
+          color text-semi-transparent-color
+          
+          
     &:checked + label
       svg
         fill input-background-hover-color
@@ -442,6 +452,7 @@ textarea
       font-size 18px
       font-weight 600
       text-transform uppercase
+      letter-spacing 9px
     .subheading
       display block
       color menu-item-subheading-color
@@ -449,6 +460,7 @@ textarea
       font-size 10px
       font-weight 400
       text-transform uppercase
+      letter-spacing 2px
     
   +media-query(all, max-width menu-breakpoint)
     top 0
@@ -490,9 +502,12 @@ aside
 .top-menu
   height 100%
   
+.bottom-menu > li:last-of-type
+  margin-bottom 32px
+  
 .menu-item
   width 100%
-  padding 17px 0 17px 29px
+  padding 16px 0 16px 2px
   box-sizing border-box
   display block
   margin 0
@@ -507,10 +522,10 @@ aside
       border-left 0 none
   &.icon
     relative false
-    padding 50px 0 48px 62px
-    margin-bottom 43px
+    padding 48px 0 48px 34px
+    margin-bottom 44px
     .logo
-      absolute 54px false false 33px
+      absolute 51px false false 24px
     .heading
       color menu-item-heading-color
       font-size 18px
@@ -525,6 +540,7 @@ aside
       font-weight 400
       letter-spacing 2px
       text-transform uppercase
+      font-style normal
       
   a
     color inherit
@@ -539,10 +555,12 @@ aside
     letter-spacing 2.1px
   
   .subheading
-    font-size 12px
+    font-size 11px
+    font-style italic
     text-transform none
     display block
     opacity 0.2
+    letter-spacing 0
 .languages
   width 100%
   display table
@@ -551,11 +569,17 @@ aside
   .menu-item
     width auto
     display table-cell
-    padding 21px 0
+    padding 0
     text-align center
+    font-size 10px
     letter-spacing 2.1px
+    a
+      display block
+      size 100%
+      padding 21px 0
     .current
       color input-background-hover-color
+      cursor default
       
 /** Shadow **/
 .shadow
@@ -580,16 +604,19 @@ aside
       font-size 18px
       line-height 22px
       font-weight 600
+      letter-spacing 9px
     .shadow-subheading
       display block
       color menu-item-subheading-color
       font-size 10px
       font-weight 400
       text-transform uppercase
+      letter-spacing 2px
 
 /*** Content ***/
 .container
-  size 100%
+  width 100%
+  min-height 100%
   padding-left sidebar-width
   box-sizing border-box
   opacity 1
@@ -610,6 +637,7 @@ aside
   padding page-padding page-spacing
   box-sizing border-box
   text-align center
+  overflow hidden
   &.main
     background-color main-page-background-color
   &.accountant
@@ -648,7 +676,7 @@ aside
   display table-cell
 .page-title
   margin 0
-  padding-right 40px
+  // padding-right 40px
   vertical-align top
   font-size 48px
   line-height 60px
@@ -697,14 +725,15 @@ aside
 .page-block
   width column-width
   display block
-  margin auto
+  margin 0 auto 30px
   +media-query(all, min-width content-breakpoint)
     display inline-block
     vertical-align top
+    margin 0 auto
 
 .page-list
 .block-list
-  margin 0 0 90px 
+  margin -16px 0 90px 
   padding 0
   list-style none
   text-align left
@@ -718,7 +747,7 @@ aside
   
 .list-item
   padding 0
-  margin 0 0 16px
+  margin 16px 0
   &:before
     content ''
     margin 8px -4px 0 0
@@ -760,7 +789,28 @@ aside
   margin auto
   +media-query(all, min-width content-breakpoint)
     width 100%
-    
+
+.next-page
+  display none
+  relative false
+  size 100% 60px
+  margin -60px 0 0
+  padding 0 0 0 sidebar-width
+  box-sizing border-box
+  background-color #AEEEBB
+  cursor pointer
+  &.show
+    display block
+  +media-query(all, max-width menu-breakpoint)
+    padding-left 0
+  svg
+    absolute 0 0 0 220px
+    z-index 1
+    size 24px 13px
+    margin auto
+    fill input-background-hover-color
+    +media-query(all, max-width menu-breakpoint)
+      left 0
 /*** Main ***/
 .main-title
   margin-bottom 60px
@@ -876,11 +926,11 @@ aside
 
 /*** Reviews Page  ***/
 .rate
-  size 100%
+  size 100% 50px
   display table
   background-color input-background-color
   .title
-  .stars
+  .stars-wrap
     display table-cell
     vertical-align middle
     padding 0 20px
@@ -888,6 +938,8 @@ aside
     font-size 14px
     color text-semi-transparent-color
   .stars
+    label
+      transition fill 0.2s linear
     input[type="radio"]
       display none
       +label
@@ -905,6 +957,9 @@ aside
         & + label:hover ~ label
         & + label ~ label:hover ~ label
           fill star-empty-color
+      label:hover ~ input[type="radio"]:checked + label ~ label
+        fill star-empty-color
+          
 .review-message
   size 100% 240px
   resize none

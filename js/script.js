@@ -41,7 +41,39 @@ $(document).ready(function() {
   };
 
   menu.append(runner).addClass('js');
-  setRunner();
+  setTimeout(setRunner, 0);
+
+  /*** Next page link ***/
+  var next_page = $('.next-page');
+
+  var getNextPage = function() {
+    var pages = $('.menu-item .page-link').length;
+    var index =  $('.menu-item').index($('.menu-item.current')) + 1;
+    if(pages > index) {
+      return $('.menu-item').eq(index).find('a');
+    }
+    else {
+      return false;
+    }
+  }
+
+  var setNextPage = function() {
+    var next = getNextPage();
+    if(next) {
+      next_page.show();
+    }
+    else {
+      next_page.hide();
+    }
+  };
+
+  var nextPage = function() {
+    var next = getNextPage();
+    next.trigger('click');
+  }
+
+  next_page.on('click', nextPage);
+  setTimeout(setNextPage, 0);
 
   /*** AJAX-reload ***/
   var shadow_fade_time = 200
@@ -114,6 +146,7 @@ $(document).ready(function() {
         $('a[href="'+href+'"]').parent().addClass('current');
         setRunner();
         setSlider();
+        setNextPage();
         if(state.set) {
           if(history && history.pushState) {
             history.pushState(state, state.title, state.url);
@@ -193,18 +226,30 @@ $(document).ready(function() {
       switch($(this).prop('nodeName')) {
         case 'INPUT':
         case 'TEXTAREA':
-          $(this).prop('placeholder', language_data);
+          if($(this).prop('type') !== 'radio' && $(this).prop('type') !== 'checkbox') {
+            $(this).prop('placeholder', language_data);
+          }
+          if($(this).prop('type') == 'radio') {
+            $(this).prop('value', JSON.stringify(language_data));
+          }
         case 'A':
           $(this).prop('title', language_data.title);
           break;
           break;
         case 'OPTION':
-          $(this).prop('value', JSON.stringify(language_data.value));
+          if($(this).parent().data('affect')) {
+            $(this).prop('value', JSON.stringify(language_data.value));
+          }
+          $(this).text(language_data.title);
           break;
         default:
           $(this).html(language_data);
       };
     });
+    setSelects();
+    $('select[data-affect]').trigger('change');
+    $('input[data-affect]:first-of-type').trigger('change');
+
   };
 
   var getLanguageData = function(target) {
@@ -464,15 +509,8 @@ $(document).ready(function() {
       "units": units
     };
     setCalculator(calculator, data); 
-
-    console.log('count', count);
-    console.log('modificator', modificator);
-    console.log('price', price);
-    console.log('value', value);
-    console.log('prefix', prefix);
-    console.log('units', units);
   }
 
   $(document.body).on('change', '.calculator-item', calculate);
-  prettify();
+  setTimeout(prettify, 0);
 });

@@ -43,6 +43,10 @@ html(lang="en")
 
     .container
       :php include('./pages/'.$page.'.php');
+      
+    .next-page
+      svg
+        use(xlink:href="#arrow-down")
 
   // jQuery
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
@@ -52,4 +56,4 @@ html(lang="en")
     :php include('./js/jquery.fs.stepper.min.js'); // Custom number scripts
     :php include('./js/script.min.js'); // Site scripts
 
-  script(src='http://localhost:35729/livereload.js')
+  // script(src='http://localhost:35729/livereload.js')

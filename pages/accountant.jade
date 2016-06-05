@@ -35,7 +35,7 @@
               :php $i = 0;
               :php foreach($language['accountant']['calculator']['data'] as $activity):
               option(
-                data-language!="accountant-calculator-data-<? echo $i; ?>-title"
+                data-language!="accountant-calculator-data-<? echo $i; ?>"
                 value!="<?=htmlspecialchars(json_encode($activity['value'])); ?>"
               ) <? echo $activity['title']; ?>
               :php $i++;

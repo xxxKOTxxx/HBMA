@@ -55,26 +55,27 @@
         .input-wrap
           .rate
             .title(data-language="reviews-review-rate") <? echo $language['reviews']['review']['rate']; ?>
-            .stars
-              :php for($i = 1; $i < 5; $i++):
-              input(
-                id!="rate-<? echo $i; ?>"
-                type="radio"
-                name="rate"
-              )
-              label(for!="rate-<? echo $i; ?>")
-                svg
-                  use(xlink:href="#star")
-              :php endfor
-              input(
-                id!="rate-5"
-                type="radio"
-                name="rate"
-                checked="checked"
-              )
-              label(for!="rate-5")
-                svg
-                  use(xlink:href="#star")
+            .stars-wrap
+              .stars
+                :php for($i = 1; $i < 5; $i++):
+                input(
+                  id!="rate-<? echo $i; ?>"
+                  type="radio"
+                  name="rate"
+                )
+                label(for!="rate-<? echo $i; ?>")
+                  svg
+                    use(xlink:href="#star")
+                :php endfor
+                input(
+                  id!="rate-5"
+                  type="radio"
+                  name="rate"
+                  checked="checked"
+                )
+                label(for!="rate-5")
+                  svg
+                    use(xlink:href="#star")
         textarea.review-message(
           name="message"
           data-language="reviews-review-message"

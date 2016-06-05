@@ -2,23 +2,22 @@
   session_start();
 	if(!isset($_COOKIE["PHPSESSID"])) {
 	  session_start();
-	}
+	};
+
+	$cookie_time = 31556926;
 	$defaultLanguage = 'en';	// Set default language
 	$availableLanguages = array(	// Set available languages
 			'ru' => array('ru','be','ky','ab','mo','et','lv'),
       'uk' => 'uk',
       'en' => 'en'
 		);
-	$cookie_time = 31556926;
+	
 	if(isset($path)) {
 		$path = './';
 	}
 	else {
 		$path = '../';
-	}
-$test1 = $_REQUEST['language'];
-$test2 = $_COOKIE['language'] ;
-$test3 = $_SESSION['language'];
+	};
 
 	require_once($path.'languages/languages.php');	// Include languages file
 	/* Detect user language */
@@ -64,9 +63,9 @@ $test3 = $_SESSION['language'];
 
 	/* Detect language */
 	function getLanguage($availableLanguages, $defaultLanguage) {
-		if(isset($_REQUEST['language'])) {
-			if(checkLanguage($_REQUEST['language'], $availableLanguages)) {
-				return $_REQUEST['language'];
+		if(isset($_POST['language'])) {
+			if(checkLanguage($_POST['language'], $availableLanguages)) {
+				return $_POST['language'];
 			};
 		};
 
@@ -93,8 +92,8 @@ $test3 = $_SESSION['language'];
 
 	/* Get language data */
 	function getLanguagesData($languages) {
-		if(isset($_REQUEST['page'])) {
-			$page = trim($_REQUEST['page'], '/');
+		if(isset($_POST['page'])) {
+			$page = trim($_POST['page'], '/');
 		};
 		if(isset($languages[$page])) {
 			$data[$page] = $languages[$page];
@@ -131,7 +130,7 @@ $test3 = $_SESSION['language'];
 	$languages_data = getLanguagesData($languages);
 	$language = getSingleLanguageData($languages_data, $current_language);
 
-	if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'ajax') {
+	if(isset($_POST['type']) && $_POST['type'] == 'ajax') {
 		$responce = json_encode($language);
 		echo $responce;
 	};

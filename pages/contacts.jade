@@ -46,7 +46,7 @@
       .page-block.send-block
         h2.block-title(data-language="contacts-form-title") <? echo $language['contacts']['form']['title']; ?>
         p.block-text(data-language="contacts-form-text") <? echo $language['contacts']['form']['text']; ?>
-        form.mail-form(action='/php/mailer.php' type="post" name="contacts")
+        form.mail-form(action='/php/mailer.php' method="POST" name="contacts")
           .input-wrap
             input(
               type="email"
@@ -57,7 +57,7 @@
           .input-wrap
             input(
               type="text"
-              name="title"
+              name="subject"
               data-language="contacts-form-subject"
               placeholder!="<? echo $language['contacts']['form']['subject']; ?>"
             )

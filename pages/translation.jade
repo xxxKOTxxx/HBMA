@@ -14,27 +14,28 @@
       h2.block-title(data-language="translation-calculator-title") <? echo $language['translation']['calculator']['title']; ?>
       p.block-text(data-language="translation-calculator-text") <? echo $language['translation']['calculator']['text']; ?>
       form.calculator.translation-calculator.page-block-wrap
-        .page-block.translation-calculator-documents(data-affect="translation-calculator-language")
+        .page-block.translation-calculator-documents
           :php $i = 0;
           :php foreach($language['translation']['calculator']['documents'] as $document):
-          :php echo '<input type="radio" name="radio" id="radio-'.$i.'" class="calculator-item calculator-radio" '.$document['status'].' value="'.htmlspecialchars(json_encode($language['translation']['calculator']['prices'][$document['price']])).'" />'
-          label(
-            for!="radio-<? echo $i; ?>"
-            data-language!="translation-calculator-documents-<? echo $i; ?>-title"
-          )
-            span <? echo $document['title']; ?>
+          :php echo '<input type="radio" name="radio" id="radio-'.$i.'" class="calculator-item calculator-radio" '.$document['status'].' value="'.htmlspecialchars(json_encode($language['translation']['calculator']['prices'][$document['price']])).'" data-affect="translation-calculator-language"'
+          :php if($document['status'] !== 'disabled') { echo 'data-language="translation-calculator-prices-'.$document['price'].'"';}
+          :php echo ' />';
+          label(for!="radio-<? echo $i; ?>")
+            span(data-language!="translation-calculator-documents-<? echo $i; ?>-title") <? echo $document['title']; ?>
           :php $i++
           :php endforeach
         |  
         .translation-calculator-inputs.page-block
           .input-wrap
             select.calculator-item.calculator-select.translation-calculator-language
-              <? foreach($language['translation']['calculator']['prices']['text'] as $price) { ?>
+              :php $i = 0;
+              :php foreach($language['translation']['calculator']['prices']['text'] as $price):
               option(
                 data-price!='<?=htmlspecialchars(json_encode($price[price])); ?>'
                 value=''
               ) <? echo $price['title']; ?>
-              <? }; ?>
+              :php $i++
+              :php endforeach
           .input-wrap
             input.calculator-item.calculator-count.calculator-number.translation-calculator-pages(
               type="number"
@@ -55,18 +56,15 @@
                 value!="<?=$modificator['value']?>"
                 data-prefix!="<?=$modificator['prefix']?>"
               )
-              label(
-                for!="checkbox-<? echo $i; ?>"
-                data-language!="translation-calculator-modificators-<? echo $i; ?>-title"
-              )
+              label(for!="checkbox-<? echo $i; ?>")
                 svg
                   use(xlink:href="#check")
-                | <? echo $modificator['title']; ?>
-                span <? echo $modificator['text']; ?>
+                span.title(data-language!="translation-calculator-modificators-<? echo $i; ?>-title") <? echo $modificator['title']; ?>
+                span.text(data-language!="translation-calculator-modificators-<? echo $i; ?>-text") <? echo $modificator['text']; ?>
             :php $i++
             :php endforeach
           .calculator-result-block
-            p.result-text(data-language="accountant-calculator-result") <? echo $language['accountant']['calculator']['result']; ?>
+            p.result-text(data-language="translation-calculator-result") <? echo $language['translation']['calculator']['result']; ?>
             p.result-prefix
             p.result-value
             p.result-units
